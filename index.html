@@ -510,7 +510,7 @@
       bottom: 22px;
       right: 22px;
       z-index: 3000;
-      display: none; /* Oculto por defecto, visible en screen-5 */
+      display: none;
       flex-direction: column;
       align-items: flex-end;
     }
@@ -676,7 +676,7 @@
           <span id="txt-session-label">Sesión:</span> <strong id="clock-display" style="color: #fbcfe8;">07:00</strong>
         </div>
 
-        <!-- BOTÓN SALIR SOLICITADO -->
+        <!-- BOTÓN SALIR REINICIA LA SESIÓN Y SEGURIDAD -->
         <button onclick="exitToHome()" class="btn-exit-app" title="Cerrar sesión y regresar al inicio">
           🚪 <span>Salir</span>
         </button>
@@ -685,7 +685,7 @@
 
     <!-- Menú Homogéneo -->
     <nav class="header-bottom-menu">
-      <button onclick="switchScreen(0)" class="menu-nav-btn" id="nav-item-home">Inicio</button>
+      <button onclick="exitToHome()" class="menu-nav-btn" id="nav-item-home">Inicio</button>
       <button onclick="openInfoView('mision')" class="menu-nav-btn" id="nav-item-mision">Misión</button>
       <button onclick="openInfoView('vision')" class="menu-nav-btn" id="nav-item-vision">Visión</button>
       <button onclick="openInfoView('transparencia')" class="menu-nav-btn" id="nav-item-transp">Transparencia</button>
@@ -850,7 +850,7 @@
       </div>
     </div>
 
-    <!-- PANTALLA 5: EXPEDIENTE COMPLETO ESTRUCTURADO (PÁGINA PRINCIPAL) -->
+    <!-- PANTALLA 5: EXPEDIENTE COMPLETO ESTRUCTURADO (PÁGINA CENTRAL) -->
     <div id="screen-5" class="screen-stage">
       <div style="max-width: 1100px; width: 100%; margin: 16px auto; padding: 0 16px; flex-grow: 1;">
         
@@ -870,7 +870,7 @@
           </div>
         </div>
 
-        <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO (ETAPA DE EJECUCIÓN) -->
+        <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO -->
         <div style="background: white; border: 1px solid var(--mag-border); border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
           <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #fce7f3; padding-bottom: 8px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
             <strong id="sec-ii-title" style="color: var(--mag-primary); font-size: 13px;">II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA</strong>
@@ -880,7 +880,6 @@
             </div>
           </div>
 
-          <!-- Stepper con la fase de Ejecución en Activo -->
           <div class="stepper-bar">
             <div class="stepper-step">
               <div class="stepper-circle stepper-done">✓</div>
@@ -1082,7 +1081,7 @@
     </div>
   </div>
 
-  <!-- CHATBOT IURISNIANO (SOLO SE MUESTRA EN LA PÁGINA CENTRAL / PANTALLA 5) -->
+  <!-- CHATBOT IURISNIANO (VISIBILIDAD EXCLUSIVA EN LA PÁGINA CENTRAL / PANTALLA 5) -->
   <div id="chatbot-wrapper">
     <div class="chat-incentive-bubble" onclick="toggleChatbotWindow()">
       💬 ¿Necesitas un resumen o ayuda con el expediente? ⚖️ ¡Haz clic aquí!
@@ -1126,7 +1125,7 @@
       </div>
     </div>
 
-    <!-- Botones predispuestos con funciones de resumen y ejecucion -->
+    <!-- Botones predispuestos con funciones de resumen y ejecución -->
     <div style="display: flex; gap: 4px; padding: 6px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
       <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen General</button>
       <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Etapa Ejecución</button>
@@ -1180,7 +1179,7 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
   </style>
 
-  <!-- LÓGICA JAVASCRIPT COMPLETA CON EVENTOS Y SIMULACIÓN DE EJECUCIÓN -->
+  <!-- LÓGICA JAVASCRIPT COMPLETA CON REINICIO DE CAPTCHA Y SEGURIDAD -->
   <script>
     // CARGAPANTALLA INICIAL A PANTALLA COMPLETA DE 3 SEGUNDOS EXACTOS
     window.addEventListener('DOMContentLoaded', () => {
@@ -1309,7 +1308,7 @@
       if (target) target.classList.add('active');
       window.scrollTo(0, 0);
 
-      // El Chatbot se muestra ÚNICAMENTE en la pantalla 5 (Página Central del Expediente)
+      // El Chatbot se muestra ÚNICAMENTE en la pantalla 5
       const botWrapper = document.getElementById('chatbot-wrapper');
       if (screenNum === 5) {
         botWrapper.style.display = 'flex';
@@ -1323,9 +1322,21 @@
       if (screenNum === 5) renderScreen5Content();
     }
 
-    // BOTÓN SALIR SOLICITADO
+    // BOTÓN SALIR Y REINICIO COMPLETO DE SEGURIDAD (CAPTCHA Y COMUNICADO REQUERIDOS NUEVAMENTE)
     function exitToHome() {
       sessionTimeLeft = 420;
+      // Resetea el formulario de búsqueda a su estado inicial bloqueado
+      document.getElementById('panel-search-form').style.display = 'none';
+      document.getElementById('box-temis-blank').style.display = 'block';
+      
+      // Cierra modales que hayan quedado abiertos
+      closeModal('modal-captcha');
+      closeModal('modal-comunicado');
+      closeModal('modal-reniec');
+      closeModal('modal-pdf-view');
+      closeModal('modal-generic-interop');
+      closeModal('modal-info-view');
+
       switchScreen(0);
     }
 
@@ -1358,7 +1369,7 @@
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
 
-    // WORKFLOW DE BÚSQUEDA
+    // WORKFLOW DE BÚSQUEDA Y CAPTCHA
     function startSearchFlow() {
       openModal('modal-captcha');
       generateRandomCaptcha();
@@ -1392,7 +1403,7 @@
       }
     }
 
-    // CAPTCHA
+    // GENERADOR Y VALIDADOR DE CAPTCHA
     let currentCaptchaCode = "";
     function generateRandomCaptcha() {
       const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
