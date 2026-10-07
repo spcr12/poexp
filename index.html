@@ -39,7 +39,7 @@
       position: relative;
     }
 
-    /* PANTALLA DE CARGA COMPLETA CON DIOSA THEMIS DETALLADA */
+    /* PANTALLA DE CARGA COMPLETA CON DIOSA THEMIS FIEL A LA IMAGEN */
     #full-page-splash {
       position: fixed;
       top: 0;
@@ -67,7 +67,7 @@
 
     .splash-themis-svg {
       width: 140px;
-      height: 180px;
+      height: 200px;
       flex-shrink: 0;
     }
 
@@ -115,14 +115,14 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: min(85vw, 650px);
-      height: min(85vw, 650px);
-      opacity: 0.038;
+      width: min(85vw, 550px);
+      height: min(85vw, 750px);
+      opacity: 0.035;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ENCABEZADO FIJO DE DOS FILAS */
+    /* ENCABEZADO FIJO */
     .sticky-header-container {
       position: sticky;
       top: 0;
@@ -214,7 +214,7 @@
     }
     .btn-exit-app:hover { background: #e11d48; }
 
-    /* BARRA DE NAVEGACIÓN INFERIOR HOMOGÉNEA */
+    /* BARRA DE NAVEGACIÓN INFERIOR HOMOGÉNEA CON TODOS LOS BOTONES */
     .header-bottom-menu {
       background: var(--mag-darkest);
       display: flex;
@@ -302,7 +302,7 @@
     .themis-white-frame {
       margin: 0 auto 14px;
       width: 110px;
-      height: 110px;
+      height: 120px;
       background: #ffffff;
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.22), inset 0 0 0 3px #fdf2f8;
@@ -631,7 +631,7 @@
       overflow: hidden;
     }
 
-    /* FOOTER ACADÉMICO CON REDES SOCIALES */
+    /* FOOTER ACADÉMICO CON REDES SOCIALES FIELES A LA IMAGEN ADJUNTA */
     .academic-footer {
       background: #18020e;
       color: #fbcfe8;
@@ -645,43 +645,44 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
-      margin: 10px 0 6px;
+      gap: 16px;
+      margin: 12px 0 8px;
     }
-    .social-icon-btn {
-      background: rgba(255,255,255,0.1);
-      color: white;
-      text-decoration: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+    .social-svg-btn {
+      width: 34px;
+      height: 34px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-      transition: background 0.2s;
+      color: #ffffff;
+      transition: transform 0.2s, color 0.2s;
     }
-    .social-icon-btn:hover { background: var(--mag-vivid); }
+    .social-svg-btn:hover {
+      transform: scale(1.15);
+      color: var(--mag-vivid);
+    }
   </style>
 </head>
 <body>
 
-  <!-- PANTALLA DE CARGA COMPLETA CON DIOSA THEMIS REFINADA (3 SEGUNDOS) -->
+  <!-- PANTALLA DE CARGA COMPLETA CON ILUSTRACIÓN DE THEMIS (3 SEGUNDOS) -->
   <div id="full-page-splash">
     <div class="splash-content-wrapper">
-      <svg class="splash-themis-svg" viewBox="0 0 200 260" fill="none">
-        <path d="M100 20 C100 20 115 15 125 35 C120 45 105 45 100 35 Z" fill="#ffffff"/>
-        <path d="M92 30 L108 30 L108 34 L92 34 Z" fill="#750e2e"/>
-        <path d="M85 50 Q100 65 115 50 L125 90 Q110 130 120 180 L110 230 L90 230 L75 160 Q90 110 85 50 Z" fill="#ffffff"/>
-        <path d="M115 55 L150 25 L160 30 L120 70 Z" fill="#ffffff"/>
-        <path d="M135 30 L185 30" stroke="#ffffff" stroke-width="3"/>
-        <path d="M135 30 L125 70 L145 70 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
-        <path d="M120 70 Q135 80 150 70 Z" fill="#ffffff"/>
-        <path d="M185 30 L175 70 L195 70 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
-        <path d="M170 70 Q185 80 200 70 Z" fill="#ffffff"/>
-        <path d="M85 55 L50 110 L40 105 L75 50 Z" fill="#ffffff"/>
-        <path d="M45 105 L20 200 L25 205 L50 110 Z" fill="#ffffff"/>
+      <!-- SVG Vectorial completo de la Diosa Themis -->
+      <svg class="splash-themis-svg" viewBox="0 0 200 300" fill="none">
+        <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#ffffff"/>
+        <rect x="83" y="32" width="34" height="6" fill="#750e2e" rx="2"/>
+        <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#ffffff"/>
+        <path d="M72 85 Q60 105 50 140 L40 180 L30 175 L45 125 L65 75 Z" fill="#ffffff"/>
+        <path d="M30 170 L20 220 L28 222 L36 175 Z" fill="#ffffff"/>
+        <path d="M15 220 L55 120" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+        <path d="M10 215 L20 225 L12 233 L2 223 Z" fill="#ffffff"/>
+        <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#ffffff"/>
+        <path d="M155 35 L190 35" stroke="#ffffff" stroke-width="3"/>
+        <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <path d="M140 75 Q155 85 170 75 Z" fill="#ffffff"/>
+        <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <path d="M175 75 Q190 85 205 75 Z" fill="#ffffff"/>
       </svg>
 
       <div class="splash-text-brand">
@@ -697,20 +698,21 @@
 
   <!-- MARCA DE AGUA FIJA DE LA DIOSA THEMIS -->
   <div class="watermark-bg">
-    <svg viewBox="0 0 200 200" fill="none" style="width: 100%; height: 100%;">
-      <circle cx="100" cy="100" r="90" fill="none" stroke="#750e2e" stroke-width="4"/>
-      <path d="M100 25 L100 160" stroke="#750e2e" stroke-width="5" stroke-linecap="round"/>
-      <path d="M80 160 L120 160" stroke="#750e2e" stroke-width="8" stroke-linecap="round"/>
-      <path d="M50 55 L150 55" stroke="#750e2e" stroke-width="5" stroke-linecap="round"/>
-      <circle cx="100" cy="55" r="7" fill="#750e2e"/>
-      <path d="M50 55 L35 95" stroke="#750e2e" stroke-width="2.5"/><path d="M50 55 L65 95" stroke="#750e2e" stroke-width="2.5"/>
-      <path d="M25 95 Q50 115 75 95 Z" fill="#750e2e"/>
-      <path d="M150 55 L135 95" stroke="#750e2e" stroke-width="2.5"/><path d="M150 55 L165 95" stroke="#750e2e" stroke-width="2.5"/>
-      <path d="M125 95 Q150 115 175 95 Z" fill="#750e2e"/>
+    <svg viewBox="0 0 200 300" fill="none" style="width: 100%; height: 100%;">
+      <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#750e2e"/>
+      <rect x="83" y="32" width="34" height="6" fill="#ffffff" rx="2"/>
+      <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#750e2e"/>
+      <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#750e2e"/>
+      <path d="M155 35 L190 35" stroke="#750e2e" stroke-width="3"/>
+      <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+      <path d="M140 75 Q155 85 170 75 Z" fill="#750e2e"/>
+      <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+      <path d="M175 75 Q190 85 205 75 Z" fill="#750e2e"/>
+      <path d="M15 220 L55 120" stroke="#750e2e" stroke-width="4"/>
     </svg>
   </div>
 
-  <!-- ENCABEZADO FIJO -->
+  <!-- ENCABEZADO FIJO DE DOS FILAS -->
   <div class="sticky-header-container">
     <div class="header-top-row">
       <div class="header-branding">
@@ -746,7 +748,7 @@
       </div>
     </div>
 
-    <!-- Menú -->
+    <!-- Menú Homogéneo Completo -->
     <nav class="header-bottom-menu">
       <button onclick="exitToHome()" class="menu-nav-btn" id="nav-item-home">Inicio</button>
       <button onclick="openInfoView('mision')" class="menu-nav-btn" id="nav-item-mision">Misión</button>
@@ -770,12 +772,17 @@
       <div class="splash-card">
         <div class="splash-hero-magenta">
           <div class="themis-white-frame">
-            <svg style="width: 65px; height: 65px;" viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="30" r="16" fill="#750e2e"/>
-              <path d="M100 46 L100 120 M100 120 L75 180 M100 120 L125 180" stroke="#750e2e" stroke-width="10" stroke-linecap="round"/>
-              <path d="M50 65 L150 65" stroke="#be185d" stroke-width="8" stroke-linecap="round"/>
-              <path d="M50 65 L35 105 L65 105 Z" fill="#750e2e"/>
-              <path d="M150 65 L135 105 L165 105 Z" fill="#750e2e"/>
+            <svg style="width: 55px; height: 75px;" viewBox="0 0 200 300" fill="none">
+              <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#750e2e"/>
+              <rect x="83" y="32" width="34" height="6" fill="#be185d" rx="2"/>
+              <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#750e2e"/>
+              <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#750e2e"/>
+              <path d="M155 35 L190 35" stroke="#750e2e" stroke-width="4"/>
+              <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+              <path d="M140 75 Q155 85 170 75 Z" fill="#be185d"/>
+              <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+              <path d="M175 75 Q190 85 205 75 Z" fill="#be185d"/>
+              <path d="M15 220 L55 120" stroke="#750e2e" stroke-width="5"/>
             </svg>
           </div>
           <h1 id="p0-heading" style="font-size: 19px; font-weight: 800;">PORTAL ELECTRÓNICO JUDICIAL (CEJ / EJE)</h1>
@@ -827,11 +834,17 @@
       <div style="max-width: 1100px; width: 100%; margin: 20px auto; padding: 0 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
         
         <div id="box-temis-blank" onclick="startSearchFlow()" style="background: white; border: 1px solid var(--mag-border); border-radius: 20px; text-align: center; padding: 42px 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-          <svg style="width: 120px; height: 120px; margin: 0 auto 14px; display: block;" viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="85" fill="#fdf2f8" stroke="#be185d" stroke-width="3"/>
-            <circle cx="100" cy="45" r="14" fill="#750e2e"/>
-            <path d="M100 59 L100 130 M100 130 L75 175 M100 130 L125 175" stroke="#750e2e" stroke-width="8"/>
-            <path d="M60 75 L140 75" stroke="#be185d" stroke-width="6"/>
+          <svg style="width: 80px; height: 110px; margin: 0 auto 14px; display: block;" viewBox="0 0 200 300" fill="none">
+            <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#750e2e"/>
+            <rect x="83" y="32" width="34" height="6" fill="#be185d" rx="2"/>
+            <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#750e2e"/>
+            <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#750e2e"/>
+            <path d="M155 35 L190 35" stroke="#750e2e" stroke-width="4"/>
+            <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+            <path d="M140 75 Q155 85 170 75 Z" fill="#be185d"/>
+            <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+            <path d="M175 75 Q190 85 205 75 Z" fill="#be185d"/>
+            <path d="M15 220 L55 120" stroke="#750e2e" stroke-width="5"/>
           </svg>
           <h2 id="p2-temis-title" style="font-size: 19px; color: #3f0314; font-weight: 800;">Portal Electrónico Judicial - CSJ Puno</h2>
           <p id="p2-temis-desc" style="font-size: 13px; color: #64748b; max-width: 500px; margin: 8px auto 16px;">
@@ -962,7 +975,7 @@
           </div>
         </div>
 
-        <!-- III. PARTES PROCESALES E INTEROPERABILIDAD (ACORDEÓN) -->
+        <!-- III. PARTES PROCESALES E INTEROPERABILIDAD CON BÚSQUEDA ABIERTA -->
         <div class="accordion-card">
           <div class="accordion-header" onclick="toggleAccordion('acc-sec-3')">
             <h3 id="sec-iii-title">III. PARTES PROCESALES E INTEROPERABILIDAD (PISDP - DL N° 1412)</h3>
@@ -973,8 +986,20 @@
             <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 12px; padding: 12px; margin-bottom: 12px;">
               <div style="font-weight: bold; font-size: 13px; color: #750e2e;">DEMANDANTE: An*** Le*** Su*** Qu*** (DNI 0216****)</div>
               <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Abog. Li*** La*** La*** (Reg. CAP 47) | Casilla SINOE: 60375</div>
+            </div>
+
+            <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 12px; margin-bottom: 14px;">
+              <div style="font-weight: bold; font-size: 13px; color: #be185d;">DEMANDADA: Seguro Social de Salud - EsSalud (RUC 2013****)</div>
+              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Apoderado Judicial: Abog. He*** Ro*** Ló*** Al*** (DNI 0120****) | Casilla: 59629</div>
+            </div>
+
+            <!-- BÚSQUEDA ABIERTA DE INTEROPERABILIDAD PARA CUALQUIER CIUDADANO -->
+            <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px;">
+              <strong style="font-size: 12px; color: #0284c7; display: block; margin-bottom: 6px;">🔍 Módulo de Consulta Interoperable ABIERTO (PISDP)</strong>
+              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <input type="text" id="interop-custom-input" placeholder="Ingrese DNI o Nombres completos de cualquier persona..." style="flex-grow: 1; padding: 7px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 11px;">
+              </div>
               
-              <!-- Botones de Interoperabilidad Compactos alineados a la Derecha -->
               <div class="interop-group-right">
                 <button onclick="triggerDynamicInterop('RENIEC')" class="btn-interop btn-reniec">
                   <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -991,18 +1016,6 @@
                 <button onclick="triggerDynamicInterop('INPE')" class="btn-interop btn-inpe">
                   <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/></svg>
                   <span>INPE</span>
-                </button>
-              </div>
-            </div>
-
-            <div style="background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 12px;">
-              <div style="font-weight: bold; font-size: 13px; color: #be185d;">DEMANDADA: Seguro Social de Salud - EsSalud (RUC 2013****)</div>
-              <div style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">Apoderado Judicial: Abog. He*** Ro*** Ló*** Al*** (DNI 0120****) | Casilla: 59629</div>
-              
-              <div class="interop-group-right">
-                <button onclick="triggerDynamicInterop('RENIEC_APO')" class="btn-interop btn-reniec">
-                  <svg style="width:12px; height:12px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  <span>RENIEC (Apoderado)</span>
                 </button>
               </div>
             </div>
@@ -1039,7 +1052,7 @@
 
   </div>
 
-  <!-- MODAL DE PROTECCIÓN DE DATOS CON TRANSICIÓN Y PERSONAJE DE SEGURIDAD -->
+  <!-- MODAL DE PROTECCIÓN DE DATOS -->
   <div id="modal-comunicado" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 520px; padding: 24px; border-top: 5px solid #750e2e;">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
@@ -1053,7 +1066,7 @@
         </div>
       </div>
       <div style="background: #fdf2f8; border: 1px solid #fbcfe8; padding: 14px; border-radius: 10px; font-size: 12px; line-height: 1.6; color: #334155; text-align: justify; margin-bottom: 16px;">
-        A partir de la fecha, se ha incluido un nuevo campo como medida técnica de protección, para que solo las partes puedan acceder a sus expedientes; a requerimiento de la <strong>Autoridad Nacional de Protección de Datos Personales</strong> y el <strong>MINJUSDH</strong>. Los datos e identidades en pantalla han sido anonimizados.
+        A partir de la fecha, se ha incluido un nuevo campo como medida técnica de protección, para que solo las partes puedan acceder a sus expedientes; a requerimiento de la <strong>Autoridad Nacional de Protección de Datos Personales</strong> y el <strong>MINJUSDH</strong>.
       </div>
       <button onclick="acceptComunicadoAndShowSearch()" class="btn-action-primary">
         <span>He leído y Acepto el Comunicado</span>
@@ -1061,14 +1074,14 @@
     </div>
   </div>
 
-  <!-- MODAL CAPTCHA INCLUSIVO CON AUDIODICTADO Y CHECKBOX DE SEGURIDAD -->
+  <!-- MODAL CAPTCHA INCLUSIVO -->
   <div id="modal-captcha" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 440px; padding: 22px; position: relative;">
       <button onclick="closeModal('modal-captcha')" style="position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: #64748b;">✕</button>
 
       <h3 style="color: #3f0314; font-size: 14px; font-weight: bold; margin-bottom: 6px;">Autenticación Inclusiva de Seguridad</h3>
       <p style="font-size: 11px; color: #64748b; margin-bottom: 12px; line-height: 1.4;">
-        Por medidas de seguridad y protección automatizada contra accesos no autorizados, complete la verificación:
+        Por medidas de seguridad y protección automatizada, complete la verificación:
       </p>
 
       <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
@@ -1094,7 +1107,7 @@
     </div>
   </div>
 
-  <!-- MODAL: SIMULADOR DINÁMICO DE INTEROPERABILIDAD -->
+  <!-- MODAL: SIMULADOR DINÁMICO DE INTEROPERABILIDAD CON IMÁGENES ALTERNADAS (VARÓN / MUJER) -->
   <div id="modal-generic-interop" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 500px; padding: 20px;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 14px;">
@@ -1103,12 +1116,8 @@
       </div>
 
       <div style="display: flex; gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 10px;">
-        <div style="width: 110px; height: 125px; background: #cbd5e1; border: 2px solid #94a3b8; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; flex-shrink: 0;">
-          <svg style="width: 55px; height: 55px; color: #475569;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-          </svg>
-          <span style="font-size: 8px; color: #475569; font-weight: bold; margin-top: 4px;">FOTO DIGITAL</span>
-          <div style="position: absolute; bottom: 0; width: 100%; background: #0284c7; color: white; font-size: 8px; text-align: center; padding: 1px;">PISDP VERIFICADO</div>
+        <!-- Fotografía dinámica SVG (Varón o Mujer) -->
+        <div id="interop-avatar-frame" style="width: 110px; height: 125px; background: #e2e8f0; border: 2px solid #0284c7; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; flex-shrink: 0;">
         </div>
 
         <div style="flex-grow: 1; font-size: 11px; line-height: 1.7;">
@@ -1122,7 +1131,7 @@
     </div>
   </div>
 
-  <!-- MODAL: VISOR DE RESOLUCIONES CON BARRA NEGRA DE CENSURA (BLACKOUT) -->
+  <!-- MODAL: VISOR DE RESOLUCIONES CON BARRA NEGRA DE CENSURA -->
   <div id="modal-pdf-view" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 740px; background: #e2e8f0;">
       <div class="pdf-bar">
@@ -1197,15 +1206,37 @@
     </div>
   </div>
 
-  <!-- FOOTER ACADÉMICO CON REDES SOCIALES -->
+  <!-- FOOTER ACADÉMICO CON ÍCONOS FIELES A LA SEGUNDA IMAGEN ADJUNTA -->
   <footer class="academic-footer">
     <div><strong>© 2026 PODER JUDICIAL DEL PERÚ - CORTE SUPERIOR DE JUSTICIA DE PUNO. TODOS LOS DERECHOS RESERVADOS.</strong></div>
     
-    <div style="font-size: 10px; color: #fbcfe8; margin-top: 6px;">SÍGUENOS EN:</div>
+    <div style="font-size: 11px; font-weight: bold; color: #ffffff; margin-top: 8px;">SÍGUENOS EN:</div>
+    
     <div class="footer-social-bar">
-      <a href="https://www.facebook.com" target="_blank" class="social-icon-btn" title="Facebook Oficial">fb</a>
-      <a href="https://www.x.com" target="_blank" class="social-icon-btn" title="X (Twitter) Oficial">x</a>
-      <a href="https://www.youtube.com" target="_blank" class="social-icon-btn" title="Canal de YouTube">yt</a>
+      <!-- Ícono X (Twitter) idéntico a la imagen adjunta -->
+      <a href="https://www.x.com" target="_blank" class="social-svg-btn" title="Síguenos en X">
+        <svg style="width:30px; height:30px;" viewBox="0 0 100 100" fill="currentColor">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"/>
+          <path d="M30 30 L45 52 L30 70 L36 70 L48 56 L58 70 L70 70 L54 47 L68 30 L62 30 L51 43 L42 30 Z M35 34 L40 34 L65 66 L60 66 Z"/>
+        </svg>
+      </a>
+
+      <!-- Ícono YouTube idéntico a la imagen adjunta -->
+      <a href="https://www.youtube.com" target="_blank" class="social-svg-btn" title="Canal de YouTube">
+        <svg style="width:30px; height:30px;" viewBox="0 0 100 100" fill="currentColor">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"/>
+          <rect x="28" y="36" width="44" height="28" rx="8" fill="currentColor"/>
+          <polygon points="45,42 60,50 45,58" fill="#18020e"/>
+        </svg>
+      </a>
+
+      <!-- Ícono Facebook idéntico a la imagen adjunta -->
+      <a href="https://www.facebook.com" target="_blank" class="social-svg-btn" title="Síguenos en Facebook">
+        <svg style="width:30px; height:30px;" viewBox="0 0 100 100" fill="currentColor">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"/>
+          <path d="M54 72 L54 50 L61 50 L62 42 L54 42 L54 37 C54 35 55 33 58 33 L62 33 L62 26 C60 26 57 26 54 26 C47 26 43 30 43 38 L43 42 L36 42 L36 50 L43 50 L43 72 Z"/>
+        </svg>
+      </a>
     </div>
 
     <div style="color: #cbd5e1; margin-top: 4px; font-size: 10px;">
@@ -1221,9 +1252,9 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
   </style>
 
-  <!-- LÓGICA JAVASCRIPT COMPLETA CON CENSURA Y SIMULADOR DINÁMICO -->
+  <!-- LÓGICA JAVASCRIPT COMPLETA CON INTEROPERABILIDAD ABIERTA -->
   <script>
-    // CARGAPANTALLA INICIAL
+    // CARGAPANTALLA INICIAL DE 3 SEGUNDOS
     window.addEventListener('DOMContentLoaded', () => {
       const splashOverlay = document.getElementById('full-page-splash');
       const progressBar = document.getElementById('splash-progress-bar');
@@ -1528,19 +1559,48 @@
       openModal('modal-info-view');
     }
 
-    // SIMULADOR DINÁMICO DE INTEROPERABILIDAD CON FOTO Y DATOS ALEATORIOS
+    // SIMULADOR DE INTEROPERABILIDAD ABIERTO (PERMITE BUSCAR CUALQUIER PERSONA Y ALTERNA FOTO MASCULINA/FEMENINA)
+    let isMaleGenderToggle = true;
     function triggerDynamicInterop(type) {
-      const nameInp = document.getElementById('input-party-name').value || "An*** Le*** Su*** Qu***";
-      const namesList = ["An*** Le*** Su*** Qu***", "Lu*** Ca*** Gi***", "Ma*** Ro*** Ló***", "Ju*** Al*** Pe***"];
-      const chosenName = namesList[Math.floor(Math.random() * namesList.length)];
+      const customSearch = document.getElementById('interop-custom-input').value.trim();
+      let personName = customSearch ? customSearch.toUpperCase() : "AN*** LE*** SU*** QU***";
+      
+      // Aplicar censura de asteriscos parcial si el usuario no introdujo un nombre censurado
+      const parts = personName.split(' ');
+      if (parts.length >= 2) {
+        personName = parts.map(p => p.length > 2 ? p.substring(0,2) + '***' : p).join(' ');
+      }
+
       const randomDni = "02" + Math.floor(1000 + Math.random() * 9000) + "****";
 
       const heading = document.getElementById('gen-interop-heading');
       const person = document.getElementById('gen-interop-person');
       const num = document.getElementById('gen-interop-number');
       const details = document.getElementById('gen-interop-details');
+      const avatarFrame = document.getElementById('interop-avatar-frame');
 
-      person.innerText = chosenName;
+      // Alternar avatar entre varón y mujer
+      isMaleGenderToggle = !isMaleGenderToggle;
+      if (isMaleGenderToggle) {
+        avatarFrame.innerHTML = `
+          <svg style="width: 55px; height: 55px; color: #0284c7;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span style="font-size: 8px; color: #0284c7; font-weight: bold; margin-top: 4px;">VARÓN</span>
+          <div style="position: absolute; bottom: 0; width: 100%; background: #0284c7; color: white; font-size: 8px; text-align: center; padding: 1px;">VERIFICADO</div>
+        `;
+      } else {
+        avatarFrame.innerHTML = `
+          <svg style="width: 55px; height: 55px; color: #be185d;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            <path d="M12 11c-2 0-3 1-3 3"/>
+          </svg>
+          <span style="font-size: 8px; color: #be185d; font-weight: bold; margin-top: 4px;">MUJER</span>
+          <div style="position: absolute; bottom: 0; width: 100%; background: #be185d; color: white; font-size: 8px; text-align: center; padding: 1px;">VERIFICADO</div>
+        `;
+      }
+
+      person.innerText = personName;
       num.innerText = "DNI " + randomDni;
 
       if (type.includes('RENIEC')) {
@@ -1729,7 +1789,7 @@
       document.getElementById('btn-exit-txt').innerHTML = `🚪 <span>${d.exitBtn.replace('🚪 ', '')}</span>`;
     }
 
-    // TEMPORIZADOR
+    // TEMPORIZADOR DE SESIÓN
     var sessionTimeLeft = 420;
     setInterval(() => {
       sessionTimeLeft--;
