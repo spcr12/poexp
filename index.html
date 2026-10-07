@@ -48,7 +48,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: #750e2e; /* Color Magenta Principal */
+      background-color: #750e2e;
       z-index: 99999;
       display: flex;
       flex-direction: column;
@@ -160,7 +160,7 @@
     .header-right-widgets {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .lang-switcher-box {
@@ -195,6 +195,25 @@
       display: flex;
       align-items: center;
       gap: 5px;
+    }
+
+    /* BOTÓN SALIR */
+    .btn-exit-app {
+      background: #be185d;
+      color: #ffffff;
+      border: none;
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+    .btn-exit-app:hover {
+      background: #e11d48;
     }
 
     /* BARRA DE NAVEGACIÓN INFERIOR HOMOGÉNEA */
@@ -328,7 +347,6 @@
     }
     .stepper-done { background: #750e2e; color: white; }
     .stepper-active { background: #be185d; color: white; box-shadow: 0 0 0 3px rgba(190,24,93,0.25); }
-    .stepper-idle { background: #cbd5e1; color: #64748b; }
 
     .timeline-wrapper {
       position: relative;
@@ -486,13 +504,13 @@
       color: #14532d;
     }
 
-    /* CHATBOT IURISNIANO CON ANIMACIÓN Y TOOLTIP INCENTIVADOR */
+    /* CHATBOT IURISNIANO (VISIBILIDAD EXCLUSIVA EN PANTALLA 5) */
     #chatbot-wrapper {
       position: fixed;
       bottom: 22px;
       right: 22px;
       z-index: 3000;
-      display: flex;
+      display: none; /* Oculto por defecto, visible en screen-5 */
       flex-direction: column;
       align-items: flex-end;
     }
@@ -549,35 +567,23 @@
       z-index: 3000;
       overflow: hidden;
     }
-    .chat-typing-dots {
-      display: inline-flex;
-      gap: 3px;
-      padding: 4px 8px;
-    }
-    .chat-dot {
-      width: 6px;
-      height: 6px;
-      background: #be185d;
-      border-radius: 50%;
-      animation: typing 1.4s infinite ease-in-out both;
-    }
-    .chat-dot:nth-child(1) { animation-delay: -0.32s; }
-    .chat-dot:nth-child(2) { animation-delay: -0.16s; }
-    @keyframes typing {
-      0%, 80%, 100% { transform: scale(0); }
-      40% { transform: scale(1); }
-    }
-    .chat-attachment-chip {
-      display: none;
-      align-items: center;
-      gap: 6px;
+
+    /* ANEXOS DESPLEGABLES DENTRO DE LA TABLA */
+    .anexos-subpanel {
       background: #fdf2f8;
-      border: 1px solid var(--mag-border);
-      padding: 4px 8px;
+      border-left: 3px solid var(--mag-vivid);
+      padding: 8px 12px;
+      margin-top: 6px;
       border-radius: 6px;
-      font-size: 10px;
-      margin: 4px 8px;
-      color: #750e2e;
+      font-size: 11px;
+    }
+
+    .anexos-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 0;
+      border-bottom: 1px dashed #fbcfe8;
     }
 
     /* FOOTER ACADÉMICO */
@@ -594,41 +600,32 @@
 </head>
 <body>
 
-  <!-- PANTALLA DE CARGA OFICIAL BASADA EN TU IMAGEN (3 SEGUNDOS DE DURACIÓN) -->
+  <!-- PANTALLA DE CARGA COMPLETA (3 SEGUNDOS DE DURACIÓN) -->
   <div id="full-page-splash">
     <div class="splash-content-wrapper">
-      <!-- Silueta en blanco exacto de la Diosa Themis -->
       <svg class="splash-themis-svg" viewBox="0 0 200 260" fill="none">
         <path d="M100 20 C100 20 115 15 125 35 C120 45 105 45 100 35 Z" fill="#ffffff"/>
         <path d="M95 38 L110 38 L115 50 L90 50 Z" fill="#ffffff"/>
-        <!-- Venda en los ojos -->
         <rect x="92" y="30" width="18" height="5" fill="#750e2e"/>
-        <!-- Cuerpo / Vestido de Themis -->
         <path d="M85 50 Q100 65 115 50 L125 90 Q110 130 120 180 L110 230 L90 230 L75 160 Q90 110 85 50 Z" fill="#ffffff"/>
         <path d="M75 160 Q60 190 50 220 L65 225 Q80 190 90 170 Z" fill="#ffffff"/>
-        <!-- Brazo Izquierdo alzando la balanza -->
         <path d="M115 55 L150 25 L160 30 L120 70 Z" fill="#ffffff"/>
-        <!-- Balanza -->
         <path d="M135 30 L185 30" stroke="#ffffff" stroke-width="3"/>
         <path d="M135 30 L125 70 L145 70 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
         <path d="M120 70 Q135 80 150 70 Z" fill="#ffffff"/>
         <path d="M185 30 L175 70 L195 70 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
         <path d="M170 70 Q185 80 200 70 Z" fill="#ffffff"/>
-        <!-- Brazo Derecho sosteniendo la Espada -->
         <path d="M85 55 L50 110 L40 105 L75 50 Z" fill="#ffffff"/>
-        <!-- Espada apuntando hacia abajo -->
         <path d="M45 105 L20 200 L25 205 L50 110 Z" fill="#ffffff"/>
         <path d="M30 100 L60 115" stroke="#ffffff" stroke-width="4"/>
       </svg>
 
-      <!-- Texto del Portal en la tipografía serif elegante -->
       <div class="splash-text-brand">
         <span class="line-1">PORTAL ELECTRÓNICO</span>
         <span class="line-2">JUDICIAL</span>
       </div>
     </div>
 
-    <!-- Barra de Carga Minimalista -->
     <div class="splash-progress-container">
       <div id="splash-progress-bar" class="splash-progress-bar"></div>
     </div>
@@ -650,7 +647,7 @@
     </svg>
   </div>
 
-  <!-- ENCABEZADO FIJO DE DOS FILAS CON BOTÓN HOMOGÉNEO DL 1412 -->
+  <!-- ENCABEZADO FIJO CON BOTÓN SALIR -->
   <div class="sticky-header-container">
     <div class="header-top-row">
       <div class="header-branding">
@@ -678,10 +675,15 @@
         <div class="clock-live-badge" style="background: #18020e; border-color: #be185d;">
           <span id="txt-session-label">Sesión:</span> <strong id="clock-display" style="color: #fbcfe8;">07:00</strong>
         </div>
+
+        <!-- BOTÓN SALIR SOLICITADO -->
+        <button onclick="exitToHome()" class="btn-exit-app" title="Cerrar sesión y regresar al inicio">
+          🚪 <span>Salir</span>
+        </button>
       </div>
     </div>
 
-    <!-- Menú Homogéneo (Mismo estilo exacto para todos los botones) -->
+    <!-- Menú Homogéneo -->
     <nav class="header-bottom-menu">
       <button onclick="switchScreen(0)" class="menu-nav-btn" id="nav-item-home">Inicio</button>
       <button onclick="openInfoView('mision')" class="menu-nav-btn" id="nav-item-mision">Misión</button>
@@ -696,7 +698,7 @@
   <!-- PANTALLAS DEL SISTEMA -->
   <div style="flex-grow: 1; display: flex; flex-direction: column;">
 
-    <!-- PANTALLA 0: PORTADA ACADÉMICA Y PROMOCIÓN DEL CIUDADANO DIGITAL -->
+    <!-- PANTALLA 0: PORTADA ACADÉMICA -->
     <div id="screen-0" class="screen-stage active center-wrapper">
       <div class="splash-card">
         <div class="splash-hero-magenta">
@@ -719,7 +721,6 @@
         </div>
 
         <div style="padding: 22px; text-align: left;">
-          <!-- Bloque de Ciudadanía Digital -->
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; font-size: 11px; line-height: 1.6; color: #166534;">
             <strong style="font-size: 12px; display: block; margin-bottom: 4px; color: #15803d;">🌱 ¡Conviértete en un Ciudadano Digital!</strong>
             Utiliza las plataformas electrónicas del Estado (D. Leg. N° 1412). Consulta causas en tiempo real, verifica escritos digitalmente con firma electrónica y evita trámites presenciales en papel.
@@ -841,7 +842,7 @@
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/>
         </svg>
         <h3 id="p4-loader-title" style="font-size: 15px; font-weight: 700; color: #3f0314;">Indexando Cuaderno Laboral Digital</h3>
-        <p id="p4-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Recuperando resoluciones, notificaciones y fojas...</p>
+        <p id="p4-loader-desc" style="font-size: 12px; color: #64748b; margin-top: 4px;">Recuperando resoluciones, anexos y liquidación en ejecución...</p>
         <div style="font-weight: 800; font-size: 14px; color: var(--mag-primary); margin-top: 14px;" id="p4-percentage">0%</div>
         <div style="background: #fce7f3; height: 8px; border-radius: 8px; overflow: hidden; margin-top: 6px;">
           <div id="p4-progress-bar" style="height: 100%; background: linear-gradient(90deg, #750e2e, #be185d); width: 0%; transition: width 0.1s linear;"></div>
@@ -849,7 +850,7 @@
       </div>
     </div>
 
-    <!-- PANTALLA 5: EXPEDIENTE COMPLETO ESTRUCTURADO -->
+    <!-- PANTALLA 5: EXPEDIENTE COMPLETO ESTRUCTURADO (PÁGINA PRINCIPAL) -->
     <div id="screen-5" class="screen-stage">
       <div style="max-width: 1100px; width: 100%; margin: 16px auto; padding: 0 16px; flex-grow: 1;">
         
@@ -865,36 +866,37 @@
             <div><span style="color: #64748b; display: block;" id="lbl-judge">Juez a Cargo:</span> <strong>Huamán Romero, Gonzalo Víctor</strong></div>
             <div><span style="color: #64748b; display: block;" id="lbl-sec">Secretaria Judicial:</span> <strong>Carlos Villán, Rosario</strong></div>
             <div><span style="color: #64748b; display: block;" id="lbl-matter">Materia / Vía:</span> <strong style="color: #750e2e;">Desnaturalización de Contrato / Proceso Ordinario (Ley 26636)</strong></div>
-            <div><span style="color: #64748b; display: block;">Pretensión Principal:</span> <strong>Inclusión en planillas D. Leg. 728 como Almacenero</strong></div>
+            <div><span style="color: #64748b; display: block;">Estado Actual:</span> <strong style="color: #059669;">ETAPA DE EJECUCIÓN DE SENTENCIA (Firme)</strong></div>
           </div>
         </div>
 
-        <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO -->
+        <!-- II. ESTADO, PROCESO Y LÍNEA DE TIEMPO (ETAPA DE EJECUCIÓN) -->
         <div style="background: white; border: 1px solid var(--mag-border); border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
           <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #fce7f3; padding-bottom: 8px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-            <strong id="sec-ii-title" style="color: var(--mag-primary); font-size: 13px;">II. ESTADO, PROCESO Y LÍNEA DE TIEMPO</strong>
+            <strong id="sec-ii-title" style="color: var(--mag-primary); font-size: 13px;">II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA</strong>
             <div style="display: flex; gap: 8px;">
               <button onclick="openGeneralReportModal()" class="btn-row-action btn-view-pdf">📊 Ver Reporte General</button>
               <button onclick="downloadCompleteExpediente()" class="btn-row-action btn-download-pdf">📥 Descargar Expediente PDF</button>
             </div>
           </div>
 
+          <!-- Stepper con la fase de Ejecución en Activo -->
           <div class="stepper-bar">
             <div class="stepper-step">
               <div class="stepper-circle stepper-done">✓</div>
               <strong>1. Postulatoria</strong>
             </div>
             <div class="stepper-step">
-              <div class="stepper-circle stepper-active">2</div>
+              <div class="stepper-circle stepper-done">✓</div>
               <strong>2. Probatoria</strong>
             </div>
             <div class="stepper-step">
-              <div class="stepper-circle stepper-idle">3</div>
-              <span style="color:#94a3b8;">3. Decisoria</span>
+              <div class="stepper-circle stepper-done">✓</div>
+              <strong>3. Decisoria</strong>
             </div>
             <div class="stepper-step">
-              <div class="stepper-circle stepper-idle">4</div>
-              <span style="color:#94a3b8;">4. Ejecución</span>
+              <div class="stepper-circle stepper-active">4</div>
+              <strong style="color: #be185d;">4. Ejecución</strong>
             </div>
           </div>
 
@@ -943,10 +945,10 @@
           </div>
         </div>
 
-        <!-- IV. SEGUIMIENTO DEL EXPEDIENTE -->
+        <!-- IV. SEGUIMIENTO DEL EXPEDIENTE CON DEMANDA Y ANEXOS DETALLADOS -->
         <div style="background: white; border: 1px solid var(--mag-border); border-radius: 16px; padding: 18px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
           <div style="border-bottom: 2px solid #fce7f3; padding-bottom: 8px; margin-bottom: 12px;">
-            <strong id="sec-iv-title" style="color: var(--mag-primary); font-size: 13px;">IV. SEGUIMIENTO DEL EXPEDIENTE (NOTIFICACIONES Y RESOLUCIONES)</strong>
+            <strong id="sec-iv-title" style="color: var(--mag-primary); font-size: 13px;">IV. SEGUIMIENTO DEL EXPEDIENTE (DEMANDA, ANEXOS, SENTENCIAS Y EJECUCIÓN)</strong>
           </div>
           <div class="table-container">
             <table>
@@ -955,7 +957,7 @@
                   <th style="padding: 8px;">N°</th>
                   <th style="padding: 8px;">Fojas</th>
                   <th style="padding: 8px;">Fecha</th>
-                  <th style="padding: 8px;">Actuación Judicial</th>
+                  <th style="padding: 8px;">Actuación Judicial / Contenido Documental</th>
                   <th style="padding: 8px; text-align: center;">Acciones</th>
                 </tr>
               </thead>
@@ -1037,7 +1039,7 @@
     </div>
   </div>
 
-  <!-- MODAL: VISOR DE RESOLUCIONES / DOCUMENTOS TIPO PDF -->
+  <!-- MODAL: VISOR DE RESOLUCIONES Y DOCUMENTOS PDF -->
   <div id="modal-pdf-view" class="modal-overlay">
     <div class="modal-sheet" style="max-width: 740px; background: #e2e8f0;">
       <div class="pdf-bar">
@@ -1080,10 +1082,10 @@
     </div>
   </div>
 
-  <!-- CHATBOT IURISNIANO CON ANIMACIÓN DE PENSAMIENTO E INCENTIVO DE USO -->
+  <!-- CHATBOT IURISNIANO (SOLO SE MUESTRA EN LA PÁGINA CENTRAL / PANTALLA 5) -->
   <div id="chatbot-wrapper">
     <div class="chat-incentive-bubble" onclick="toggleChatbotWindow()">
-      💬 ¿Tienes alguna duda sobre el expediente? ⚖️ ¡Haz clic aquí!
+      💬 ¿Necesitas un resumen o ayuda con el expediente? ⚖️ ¡Haz clic aquí!
     </div>
 
     <div id="chatbot-bubble" onclick="toggleChatbotWindow()" title="Asistente Virtual Iurisniano">
@@ -1124,15 +1126,13 @@
       </div>
     </div>
 
-    <!-- Preguntas predispuestas instantáneas -->
+    <!-- Botones predispuestos con funciones de resumen y ejecucion -->
     <div style="display: flex; gap: 4px; padding: 6px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
-      <button onclick="quickAskBot('¿Dónde está la demanda?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📄 Demanda</button>
-      <button onclick="quickAskBot('¿Quién es el juez?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">⚖️ Juez</button>
-      <button onclick="quickAskBot('¿Qué resoluciones hay?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🏛️ Resoluciones</button>
-      <button onclick="quickAskBot('¿Plazos procesales?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">⏱️ Plazos</button>
-      <button onclick="quickAskBot('¿Qué es SINOE?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📬 SINOE</button>
+      <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen General</button>
+      <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Etapa Ejecución</button>
+      <button onclick="quickAskBot('¿Dónde está la demanda y sus anexos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📄 Demanda y Anexos</button>
+      <button onclick="quickAskBot('¿Cuál fue el fallo de la sentencia?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🏛️ Sentencia de Vista</button>
       <button onclick="quickAskBot('¿Base Legal DL 1412?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📜 DL 1412</button>
-      <button onclick="quickAskBot('¿Régimen Laboral 728?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">💼 D. Leg. 728</button>
     </div>
 
     <div id="chat-attached-file" class="chat-attachment-chip">
@@ -1143,19 +1143,17 @@
     <!-- Contenedor Mensajes -->
     <div id="chatbot-log" style="flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; background: #fffafc;">
       <div style="background: #ffffff; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--mag-border); max-width: 85%; align-self: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
-        ¡Hola! 👋 Soy <strong>Iurisniano</strong>, tu asistente de inteligencia artificial jurídica. Haz clic en cualquiera de los botones superiores o escribe tu duda para orientarte sobre el expediente `00174-2019-0-2111-JR-LA-02`.
+        ¡Hola! 👋 Soy <strong>IURISNIANO</strong>. He analizado el expediente `00174-2019-0-2111-JR-LA-02`. Puedo generarte un **Resumen Ejecutivo**, detallar la Sentencia en **Etapa de Ejecución**, o explicarte los anexos de la demanda. ¿En qué te ayudo?
       </div>
     </div>
 
-    <!-- Indicador de tipeo -->
     <div id="chat-typing-indicator" style="display: none; padding: 4px 12px; background: #fffafc;">
       <div class="chat-typing-dots">
         <span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>
       </div>
-      <span style="font-size: 9px; color: #64748b; font-style: italic;">Iurisniano está analizando el expediente...</span>
+      <span style="font-size: 9px; color: #64748b; font-style: italic;">Iurisniano procesando el expediente...</span>
     </div>
 
-    <!-- Barra Input con Adjunto -->
     <div style="padding: 8px; border-top: 1px solid #e2e8f0; display: flex; gap: 6px; background: white; align-items: center;">
       <label for="chatbot-file-input" style="cursor: pointer; padding: 4px 6px; color: #750e2e; font-size: 15px;" title="Adjuntar documento o resolución">
         📎
@@ -1182,7 +1180,7 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
   </style>
 
-  <!-- LÓGICA JAVASCRIPT COMPLETA CON TEMPORIZADOR EXACTO DE 3 SEGUNDOS -->
+  <!-- LÓGICA JAVASCRIPT COMPLETA CON EVENTOS Y SIMULACIÓN DE EJECUCIÓN -->
   <script>
     // CARGAPANTALLA INICIAL A PANTALLA COMPLETA DE 3 SEGUNDOS EXACTOS
     window.addEventListener('DOMContentLoaded', () => {
@@ -1190,7 +1188,7 @@
       const progressBar = document.getElementById('splash-progress-bar');
       
       let startTime = null;
-      const duration = 3000; // 3 segundos exactos
+      const duration = 3000;
 
       function animateProgress(timestamp) {
         if (!startTime) startTime = timestamp;
@@ -1202,7 +1200,6 @@
         if (elapsed < duration) {
           requestAnimationFrame(animateProgress);
         } else {
-          // Ocultar suavemente al cumplir los 3 segundos
           splashOverlay.style.opacity = '0';
           setTimeout(() => {
             splashOverlay.style.display = 'none';
@@ -1213,7 +1210,7 @@
       requestAnimationFrame(animateProgress);
     });
 
-    // BASE DE DATOS DE ACTUADOS FORMALES
+    // BASE DE DATOS AMPLIADA: DEMANDA, ANEXOS, SENTENCIA Y ETAPA DE EJECUCIÓN
     var ACTUADOS = [
       {
         n: 1, f: "Fjs. 1-2", d: "26/06/2019", t: "Cargo / Carátula de Ingreso", des: "Mesa de Partes Única de Juliaca - CDG N° 00174-2019.",
@@ -1231,147 +1228,105 @@
         signer: "IVÁN PALOMINO JARA - MESA DE PARTES"
       },
       {
-        n: 2, f: "Fjs. 2-26", d: "26/06/2019", t: "Escrito N° 01 (Demanda)", des: "Demanda ordinaria laboral de desnaturalización e inclusión en planillas 728.",
+        n: 2, f: "Fjs. 2-26", d: "26/06/2019", t: "Escrito N° 01 (Demanda Principal y Anexos)", des: "Demanda ordinaria laboral de desnaturalización con sus recaudos (Anexos 1-A al 1-U).",
         headerOffice: "SEGUNDO JUZGADO CIVIL DE SAN ROMÁN - JULIACA",
-        title: "ESCRITO N° 01: DEMANDA LABORAL ORDINARIA",
+        title: "ESCRITO N° 01: DEMANDA LABORAL ORDINARIA Y CUADERNO DE ANEXOS",
         content: `
           <p><strong>SUMILLA:</strong> INTERPONE DEMANDA LABORAL DE DESNATURALIZACIÓN DE INTERMEDIACIÓN LABORAL Y RECONOCIMIENTO DE VÍNCULO A PLAZO INDETERMINADO.</p>
           <p><strong>SEÑOR JUEZ DEL SEGUNDO JUZGADO CIVIL DE SAN ROMÁN - JULIACA:</strong></p>
-          <p><strong>ANDRÉS LEONIDAS SUPO QUISPE</strong>, identificado con DNI N° 02167445, con domicilio real en Av. Manco Cápac N° 964, Juliaca, señalando Casilla Electrónica SINOE N° 60375, con el patrocinio del Dr. Lino Larico Larico (Reg. CAP N° 47); a Ud. respetuosamente digo:</p>
+          <p><strong>ANDRÉS LEONIDAS SUPO QUISPE</strong>, identificado con DNI N° 02167445, señalando Casilla Electrónica SINOE N° 60375, con el patrocinio del Dr. Lino Larico Larico (Reg. CAP N° 47); a Ud. respetuosamente digo:</p>
           <p><strong>I. PETITORIO:</strong></p>
-          <p>1. <em>Pretensión Principal:</em> Se declare judicialmente la <strong>DESNATURALIZACIÓN DE LA INTERMEDIACIÓN LABORAL</strong> bajo la cual el accionante viene laborando en la Unidad de Almacenes de EsSalud Red Asistencial Juliaca.</p>
-          <p>2. <em>Pretensión Accesoria:</em> Se ordene a la entidad demandada incorporar al actor al Libro de Planillas bajo el régimen laboral de la actividad privada (D. Leg. N° 728), a plazo indeterminado, desde el 01 de diciembre de 1996 en el cargo de Almacenero.</p>
-          <p><strong>II. FUNDAMENTOS DE HECHO:</strong></p>
-          <p>El actor ingresó a laborar el 01/12/1996 mediante la empresa Services Integrados de Limpieza S.A. (SILSA), habiendo sido destacado de manera ininterrumpida al Almacén Central de EsSalud Juliaca, ejecutando labores permanentes y bajo subordinación directa de las jefaturas de EsSalud, configurándose la primacía de la realidad.</p>
-        `,
-        signer: "DR. LINO LARICO LARICO - ABOGADO REG. CAP 47"
-      },
-      {
-        n: 3, f: "Fjs. 26-96", d: "26/06/2019", t: "Recaudos y Anexos (1-A al 1-U)", des: "Actas de inspección 226-2013 y 567-2013, CAP, MOF y constancias SILSA.",
-        headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
-        title: "RECEPCIÓN Y CUSTODIA DE MEDIOS PROBATORIOS",
-        content: `
-          <p>Se deja constancia del apersonamiento formal e ingreso de setenta (70) fojas de instrumentales probatorias:</p>
+          <p>1. Declarar la <strong>DESNATURALIZACIÓN DE LA INTERMEDIACIÓN LABORAL</strong> brindada mediante SILSA.</p>
+          <p>2. Ordenar a EsSalud incorporar al trabajador al Libro de Planillas D. Leg. 728 a plazo indeterminado desde el 01/12/1996.</p>
+          <p><strong>II. ANEXOS ADJUNTOS A LA DEMANDA:</strong></p>
           <ul style="padding-left:20px;">
-            <li>Constancias de trabajo emitidas por SILSA acreditando labores desde 1996.</li>
-            <li>Acta de Infracción N° 226-2013-ZTPE-JUL emitida por la Dirección Regional de Trabajo.</li>
-            <li>Acta de Requerimiento N° 567-2013 ordenando pase a planillas.</li>
-            <li>Manual de Organización y Funciones (MOF) y CAP institucional de EsSalud.</li>
+            <li><strong>Anexo 1-A:</strong> Copia legible de DNI del accionante.</li>
+            <li><strong>Anexo 1-B:</strong> Acta de Infracción N° 226-2013-ZTPE-JUL (Inspección de Trabajo - DRTPE Puno).</li>
+            <li><strong>Anexo 1-C:</strong> Contratos de prestación de servicios entre EsSalud y SILSA S.A.</li>
+            <li><strong>Anexo 1-D a 1-M:</strong> Boletas de pago y constancias de servicio ininterrumpido como Almacenero.</li>
+            <li><strong>Anexo 1-N:</strong> Cuadro de Asignación de Personal (CAP) y MOF institucionales de EsSalud.</li>
           </ul>
         `,
-        signer: "ROSARIO CARLOS VILLÁN - ESPECIALISTA LEGAL"
+        signer: "DR. LINO LARICO LARICO - ABOGADO REG. CAP 47",
+        hasAnexos: true
       },
       {
-        n: 4, f: "Fjs. 97", d: "11/07/2019", t: "Cargo de Redistribución", des: "Cód. 0000163165-2019. Redistribución por Res. Adm. N° 232-2019-CE-PJ.",
-        headerOffice: "CORTE SUPERIOR DE JUSTICIA DE PUNO - MESA CORPORATIVA",
-        title: "OFICIO DE REDISTRIBUCIÓN JURISDICCIONAL CORPORATIVA",
-        content: `
-          <p>En cumplimiento de lo resuelto por el Consejo Ejecutivo del Poder Judicial mediante <strong>R.A. N° 232-2019-CE-PJ</strong>, se dispone la remisión de la presente causa ordinaria laboral del 2° Juzgado Civil al Despacho del <strong>JUZGADO DE TRABAJO - ZONA NORTE DE JULIACA</strong> para su conocimiento bajo los alcances de la Ley N° 26636.</p>
-        `,
-        signer: "MESA DE PARTES CORPORATIVA LABORAL"
-      },
-      {
-        n: 5, f: "Fjs. 98", d: "12/07/2019", t: "Constancia de Secretaría", des: "La Secretaria Judicial Rosario Carlos Villán asume la tramitación de la causa.",
+        n: 3, f: "Fjs. 99", d: "13/08/2019", t: "Resolución N° 01 (Auto de Inadmisibilidad)", des: "Concede 3 días al actor para pronunciarse sobre SILSA.",
         headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
-        title: "RAZÓN DE SECRETARÍA JUDICIAL",
-        content: `
-          <p><strong>RAZÓN:</strong> Señora Juez, doy cuenta a usted que con la fecha la suscrita asume la función de especialista legal de causa por disposición superior de redistribución de despachos corporativos. Lo que pongo en su conocimiento para los fines de ley.</p>
-        `,
-        signer: "ROSARIO CARLOS VILLÁN - SECRETARIA JUDICIAL"
+        title: "RESOLUCIÓN NRO. 01 (AUTO CON REQUERIMIENTO)",
+        content: `<p>Se requiere al actor precisar la inclusión o exclusión procesal de la service SILSA S.A. en un plazo de 03 días.</p>`,
+        signer: "GONZALO VÍCTOR HUAMÁN ROMERO - JUEZ"
       },
       {
-        n: 6, f: "Fjs. 99", d: "13/08/2019", t: "Resolución N° 01 (Auto)", des: "Admisorio provisional: concede 3 días al actor para pronunciarse sobre SILSA.",
+        n: 4, f: "Fjs. 105", d: "28/08/2019", t: "Resolución N° 02 (Auto Admisorio)", des: "Admite formalmente la demanda a trámite ordinario laboral; corre traslado por 10 días.",
         headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
-        title: "RESOLUCIÓN NRO. 01 (AUTO DE INADMISIBILIDAD CON REQUERIMIENTO)",
+        title: "RESOLUCIÓN NRO. 02 (AUTO ADMISORIO)",
+        content: `<p>Se admite a trámite la demanda ordinaria laboral y se otorga el plazo perentorio de 10 días a EsSalud para contestar.</p>`,
+        signer: "GONZALO VÍCTOR HUAMÁN ROMERO - JUEZ"
+      },
+      {
+        n: 5, f: "Fjs. 108-124", d: "25/09/2019", t: "Contestación de Demanda - EsSalud", des: "Reg. 3461-2019. EsSalud solicita declarar infundada la demanda.",
+        headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
+        title: "ESCRITO DE CONTESTACIÓN DE DEMANDA",
+        content: `<p>EsSalud contesta la demanda alegando falta de plaza vacante en CAP y sostiene que la relación fue con SILSA.</p>`,
+        signer: "ABOG. HERNÁN ROLANDO LÓPEZ ALFÉREZ"
+      },
+      {
+        n: 6, f: "Fjs. 140-148", d: "15/10/2020", t: "Resolución N° 08 (SENTENCIA DE 1RA INSTANCIA N° 045-2020)", des: "DECLARA FUNDADA LA DEMANDA. Ordena inclusión a planillas D. Leg. 728.",
+        headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
+        title: "SENTENCIA N° 045-2020-JTL-JULIACA",
         content: `
-          <p><strong>Juliaca, trece de agosto del año dos mil diecinueve.-</strong></p>
-          <p><strong>AUTOS Y VISTOS;</strong> con la demanda que antecede y recaudos acompañados; y, <strong>CONSIDERANDO:</strong></p>
-          <p><strong>Primero:</strong> Que el accionante interpone demanda laboral sobre desnaturalización de intermediación laboral pretendiendo su inclusión a planillas contra EsSalud.</p>
-          <p><strong>Segundo:</strong> Que, advirtiéndose de autos que el demandante sostiene haber prestado servicios a través de la empresa Services Integrados de Limpieza S.A. (SILSA), empero no ha cumplido con demandar a esta última en calidad de codemandada o precisar las razones técnico-procesales de su exclusión;</p>
-          <p><strong>SE RESUELVE:</strong></p>
-          <p>1. Declarar <strong>INADMISIBLE</strong> la demanda laboral interpuesta por ANDRÉS LEONIDAS SUPO QUISPE.</p>
-          <p>2. <strong>CONCEDER al demandante el plazo de TRES (03) DÍAS HÁBILES</strong> a fin de que subsane la omisión consistente en pronunciarse respecto a la participación de la empresa Services Integrados de Limpieza S.A. (SILSA), bajo apercibimiento de rechazarse la demanda y disponerse el archivo definitivo.</p>
+          <p><strong>FALLO:</strong> Declarando <strong>FUNDADA EN PARTE</strong> la demanda interpuesta por ANDRÉS LEONIDAS SUPO QUISPE contra EsSalud.</p>
+          <p>1. Se declara la desnaturalización de los contratos de intermediación laboral.</p>
+          <p>2. Se ORDENA a EsSalud registrar al actor en su Libro de Planillas bajo el Decreto Legislativo N° 728 a plazo indeterminado.</p>
         `,
         signer: "GONZALO VÍCTOR HUAMÁN ROMERO - JUEZ TITULAR"
       },
       {
-        n: 7, f: "Fjs. 100", d: "15/08/2019", t: "Cédula Electrónica N° 6475-2019", des: "Notificación SINOE de la Res. N° 01 a Casilla 60375 del actor.",
-        headerOffice: "CENTRAL DE NOTIFICACIONES - CORTE DE PUNO",
-        title: "CÉDULA DE NOTIFICACIÓN ELECTRÓNICA SINOE N° 6475-2019",
+        n: 7, f: "Fjs. 185-192", d: "22/06/2021", t: "SENTENCIA DE VISTA N° 012-2021 (SALA LABORAL CSJ PUNO)", des: "CONFIRMA SENTENCIA DE 1RA INSTANCIA en todos sus extremos. Queda Firme.",
+        headerOffice: "SALA CIVIL / LABORAL DE LA CORTE SUPERIOR DE JUSTICIA DE PUNO",
+        title: "SENTENCIA DE VISTA N° 012-2021-SLA",
         content: `
-          <p><strong>DESTINATARIO:</strong> SUPO QUISPE, ANDRÉS LEONIDAS</p>
-          <p><strong>CASILLA SINOE:</strong> 60375 | <strong>FECHA DE DEPÓSITO:</strong> 15/08/2019 - 14:22:10 hrs.</p>
-          <p><strong>RESOLUCIÓN:</strong> RESOLUCIÓN N° 01 DE FECHA 13/08/2019 (INADMISIBLE CON PLAZO DE 3 DÍAS).</p>
-          <p>Diligenciada electrónicamente de conformidad con la Ley N° 30229 y Decreto Legislativo N° 1412.</p>
+          <p><strong>CONFIRMARON</strong> la Sentencia N° 045-2020 que declaró FUNDADA la demanda de desnaturalización. Mandaron se cumpla lo resuelto con calidad de Cosa Juzgada.</p>
         `,
-        signer: "SISTEMA ELECTRÓNICO SINOE"
+        signer: "SALA LABORAL CORPORATIVA DE PUNO"
       },
       {
-        n: 8, f: "Fjs. 101-104", d: "21/08/2019", t: "Escrito N° 02 (Subsanación)", des: "Demandante sustenta que no demanda a SILSA porque el mando fue de EsSalud.",
-        headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
-        title: "ESCRITO N° 02: ABSUELVE TRASLADO DE RESOLUCIÓN N° 01",
+        n: 8, f: "Fjs. 210-215", d: "10/03/2022", t: "Resolución N° 15 (AUTO DE REQUERIMIENTO DE EJECUCIÓN)", des: "ETAPA DE EJECUCIÓN: Requiere a EsSalud cumplir con el mandato y aprobar Liquidación.",
+        headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE DE JULIACA (EN EJECUCIÓN)",
+        title: "RESOLUCIÓN NRO. 15 (EJECUCIÓN DE SENTENCIA FIRME)",
         content: `
-          <p><strong>SUMILLA:</strong> SUBSANA OMISIÓN ADVERTIDA EN RESOLUCIÓN NRO. 01.</p>
-          <p>El actor absuelve el requerimiento señalando que no acciona contra SILSA debido a que el provecho directo, la prestación personal, el uso de software SAP institucional y el ejercicio de subordinación permanente recayó de manera directa y exclusiva en la entidad usuaria <strong>ESSALUD RED ASISTENCIAL JULIACA</strong>, operando la primacía de la realidad.</p>
+          <p><strong>SE RESUELVE:</strong> REQUERIR a la entidad demandada RED ASISTENCIAL JULIACA - ESSALUD para que en el plazo de CINCO (05) DÍAS HÁBILES acredite documentadamente el alta del trabajador en el T-Registro SUNAT e inclusión en planillas 728, bajo apercibimiento de multa coercitiva acumulativa.</p>
         `,
-        signer: "DR. LINO LARICO LARICO - ABOGADO"
-      },
-      {
-        n: 9, f: "Fjs. 105", d: "28/08/2019", t: "Resolución N° 02 (Admisorio)", des: "Admite formalmente la demanda a trámite ordinario laboral; corre traslado por 10 días.",
-        headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
-        title: "RESOLUCIÓN NRO. 02 (AUTO ADMISORIO DE DEMANDA LABORAL)",
-        content: `
-          <p><strong>Juliaca, veintiocho de agosto del dos mil diecinueve.-</strong></p>
-          <p><strong>AUTOS Y VISTOS;</strong> con el escrito de subsanación que antecede; <strong>CONSIDERANDO:</strong> Que el demandante ha cumplido con precisar las causales por las cuales demanda de manera directa a la usuaria EsSalud;</p>
-          <p><strong>SE RESUELVE:</strong></p>
-          <p>1. Tener por <strong>SUBSANADA</strong> la demanda por parte del accionante Andrés Leonidas Supo Quispe.</p>
-          <p>2. <strong>ADMITIR A TRÁMITE</strong> la demanda en la vía del <strong>PROCESO ORDINARIO LABORAL</strong> conforme a la Ley N° 26636.</p>
-          <p>3. <strong>CORRER TRASLADO</strong> de la demanda a la demandada RED ASISTENCIAL JULIACA - ESSALUD por el plazo perentorio de <strong>DIEZ (10) DÍAS HÁBILES</strong> para su contestación, bajo apercibimiento de declararse su rebeldía.</p>
-        `,
-        signer: "GONZALO VÍCTOR HUAMÁN ROMERO - JUEZ TITULAR"
-      },
-      {
-        n: 10, f: "Fjs. 106", d: "05/09/2019", t: "Cédula Electrónica N° 63800-2019", des: "Notificación SINOE de la Res. N° 02 a Casilla 60375 del actor.",
-        headerOffice: "CENTRAL DE NOTIFICACIONES - SEDE JULIACA",
-        title: "CÉDULA SINOE N° 63800-2019 (NOTIFICA ADMISORIO)",
-        content: `
-          <p>Notificación electrónica al actor en Casilla SINOE 60375 con la Resolución N° 02 (Auto Admisorio). Notificado válidamente el 05/09/2019.</p>
-        `,
-        signer: "SISTEMA ELECTRÓNICO SINOE"
-      },
-      {
-        n: 11, f: "Fjs. 107", d: "10/09/2019", t: "Cédula Física N° 7304-2019", des: "Emplazamiento a EsSalud en domicilio real institucional (Av. Santos Chocano S/N).",
-        headerOffice: "CENTRAL DE NOTIFICACIONES JUDICIALES DE SAN ROMÁN",
-        title: "CÉDULA DE EMPLAZAMIENTO JUDICIAL FÍSICO N° 7304-2019",
-        content: `
-          <p>Diligencia presencial en la sede de la Red Asistencial Juliaca - EsSalud (Av. José Santos Chocano S/N, La Capilla, Juliaca). Se hace entrega de cédula física con copias completas de la demanda y auto admisorio a mesa de partes institucional.</p>
-        `,
-        signer: "NOTIFICADOR JUDICIAL - CSJ PUNO"
-      },
-      {
-        n: 12, f: "Fjs. 108-124+", d: "25/09/2019", t: "Contestación de Demanda", des: "Reg. 3461-2019. EsSalud contesta mediante apoderado Hernán López Alférez.",
-        headerOffice: "JUZGADO DE TRABAJO - ZONA NORTE - JULIACA",
-        title: "ESCRITO DE APERSONAMIENTO Y CONTESTACIÓN DE DEMANDA - ESSALUD",
-        content: `
-          <p><strong>REGISTRO:</strong> 3461-2019 | <strong>CASILLA SINOE:</strong> 59629</p>
-          <p><strong>HERNÁN ROLANDO LÓPEZ ALFÉREZ</strong>, apoderado judicial de EsSalud Red Asistencial Juliaca (Partida N° 11008571 Zona Reg. IX); se apersona y contesta la demanda solicitando se declare <strong>INFUNDADA O IMPROCEDENTE</strong>:</p>
-          <p>1. Alega que el vínculo laboral original y pago de haberes recayó en la empresa contratista SILSA.</p>
-          <p>2. Aduce que en el Cuadro de Asignación de Personal (CAP) y MOF de EsSalud no existe plaza vacante presupuestada para la incorporación automática del trabajador.</p>
-        `,
-        signer: "ABOG. HERNÁN ROLANDO LÓPEZ ALFÉREZ - APODERADO"
+        signer: "GONZALO VÍCTOR HUAMÁN ROMERO - JUEZ"
       }
     ];
 
-    // CONTROL DE PANTALLAS
+    // CONTROL DE PANTALLAS Y CONTROL DEL CHATBOT
     function switchScreen(screenNum) {
       document.querySelectorAll('.screen-stage').forEach(el => el.classList.remove('active'));
       const target = document.getElementById('screen-' + screenNum);
       if (target) target.classList.add('active');
       window.scrollTo(0, 0);
 
+      // El Chatbot se muestra ÚNICAMENTE en la pantalla 5 (Página Central del Expediente)
+      const botWrapper = document.getElementById('chatbot-wrapper');
+      if (screenNum === 5) {
+        botWrapper.style.display = 'flex';
+      } else {
+        botWrapper.style.display = 'none';
+        document.getElementById('chatbot-dialog').style.display = 'none';
+      }
+
       if (screenNum === 1) startDynamicLoader('p1-progress-bar', 'p1-percentage', 2);
       if (screenNum === 4) startDynamicLoader('p4-progress-bar', 'p4-percentage', 5);
       if (screenNum === 5) renderScreen5Content();
+    }
+
+    // BOTÓN SALIR SOLICITADO
+    function exitToHome() {
+      sessionTimeLeft = 420;
+      switchScreen(0);
     }
 
     function startDynamicLoader(barId, pctId, nextScreen) {
@@ -1587,23 +1542,23 @@
     }
 
     function downloadCompleteExpediente() {
-      const fileData = `PODER JUDICIAL DEL PERÚ - CORTE SUPERIOR DE JUSTICIA DE PUNO\nEXPEDIENTE JUDICIAL ELECTRÓNICO COMPLETO N° 00174-2019-0-2111-JR-LA-02\nDEMANDANTE: ANDRÉS LEONIDAS SUPO QUISPE\nDEMANDADA: ESSALUD RED ASISTENCIAL JULIACA\nMATERIA: DESNATURALIZACIÓN DE INTERMEDIACIÓN LABORAL\nTOTAL DE FOJAS DIGITALIZADAS: 124+\nCERTIFICACIÓN DIGITAL VÁLIDA CONFORME AL DECRETO LEGISLATIVO N° 1412.`;
+      const fileData = `PODER JUDICIAL DEL PERÚ - CORTE SUPERIOR DE JUSTICIA DE PUNO\nEXPEDIENTE JUDICIAL ELECTRÓNICO COMPLETO N° 00174-2019-0-2111-JR-LA-02\nDEMANDANTE: ANDRÉS LEONIDAS SUPO QUISPE\nDEMANDADA: ESSALUD RED ASISTENCIAL JULIACA\nMATERIA: DESNATURALIZACIÓN DE INTERMEDIACIÓN LABORAL\nTOTAL DE FOJAS DIGITALIZADAS: 215+\nETAPA: EJECUCIÓN DE SENTENCIA FIRME\nCERTIFICACIÓN DIGITAL VÁLIDA CONFORME AL DECRETO LEGISLATIVO N° 1412.`;
       const blob = new Blob([fileData], { type: 'application/pdf' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
-      link.download = "Expediente_Completo_00174-2019.pdf";
+      link.download = "Expediente_Completo_Ejecucion_00174-2019.pdf";
       link.click();
     }
 
     function openGeneralReportModal() {
-      alert("REPORTE EJECUTIVO DE CAUSA N° 00174-2019:\n\n• Sede: Sede Central Juliaca\n• Juez: Huamán Romero, Gonzalo Víctor\n• Especialista: Carlos Villán, Rosario\n• Estado Procesal: Etapa Postulatoria con contestación de demanda\n• Marco Legal: Ley N° 26636 & Decreto Legislativo N° 1412\n• Cuaderno: Principal (12 Actuados / 124+ fojas)");
+      alert("REPORTE EJECUTIVO - ESTADO EN EJECUCIÓN:\n\n• Sede: Sede Central Juliaca\n• Juez: Huamán Romero, Gonzalo Víctor\n• Estado Procesal: Etapa de Ejecución de Sentencia Firme (Cosa Juzgada)\n• Sentencia de Vista: N° 012-2021 (Confirmada)\n• Requerimiento Activo: Res. N° 15 (Orden de Pase a Planilla 728 y Liquidación)");
     }
 
-    // RENDERIZADO PANTALLA 5
+    // RENDERIZADO PANTALLA 5 CON ANEXOS
     function renderScreen5Content() {
       const tBox = document.getElementById('timeline-flow-box');
       tBox.innerHTML = '';
-      [ACTUADOS[0], ACTUADOS[1], ACTUADOS[3], ACTUADOS[5], ACTUADOS[8], ACTUADOS[11]].forEach(item => {
+      [ACTUADOS[0], ACTUADOS[1], ACTUADOS[3], ACTUADOS[5], ACTUADOS[6], ACTUADOS[7]].forEach(item => {
         const div = document.createElement('div');
         div.className = 'timeline-node';
         div.innerHTML = `
@@ -1627,21 +1582,51 @@
       tbody.innerHTML = '';
       ACTUADOS.forEach(a => {
         const tr = document.createElement('tr');
+        
+        let anexosHtml = "";
+        if (a.hasAnexos) {
+          anexosHtml = `
+            <div class="anexos-subpanel">
+              <strong style="color:#750e2e;">📌 Cuaderno de Anexos Adjuntos:</strong>
+              <div class="anexos-item">
+                <span>Anexo 1-A: DNI del Demandante</span>
+                <button onclick="openPdfDocument(2)" class="btn-row-action btn-view-pdf" style="font-size:9px;">Ver Anexo</button>
+              </div>
+              <div class="anexos-item">
+                <span>Anexo 1-B: Acta de Infracción Sunafil / DRTPE N° 226-2013</span>
+                <button onclick="openPdfDocument(2)" class="btn-row-action btn-view-pdf" style="font-size:9px;">Ver Anexo</button>
+              </div>
+              <div class="anexos-item">
+                <span>Anexo 1-C: Contrato de Intermediación SILSA - EsSalud</span>
+                <button onclick="openPdfDocument(2)" class="btn-row-action btn-view-pdf" style="font-size:9px;">Ver Anexo</button>
+              </div>
+              <div class="anexos-item">
+                <span>Anexo 1-D: Récord de Boletas de Pago Almacenero</span>
+                <button onclick="openPdfDocument(2)" class="btn-row-action btn-view-pdf" style="font-size:9px;">Ver Anexo</button>
+              </div>
+            </div>
+          `;
+        }
+
         tr.innerHTML = `
           <td style="padding:7px; text-align:center; font-weight:bold;">${a.n < 10 ? '0' + a.n : a.n}</td>
           <td style="padding:7px; font-family:monospace;">${a.f}</td>
           <td style="padding:7px;">${a.d}</td>
-          <td style="padding:7px; font-weight:bold; color:#750e2e;">${a.t}</td>
+          <td style="padding:7px;">
+            <strong style="color:#750e2e;">${a.t}</strong>
+            <div style="font-size:11px; color:#64748b;">${a.des}</div>
+            ${anexosHtml}
+          </td>
           <td style="padding:7px; text-align:center; white-space:nowrap;">
             <button onclick="openPdfDocument(${a.n})" class="btn-row-action btn-view-pdf">📄 Ver PDF</button>
-            <button onclick="downloadSinglePdf(${a.n})" class="btn-row-action btn-download-pdf" style="margin-left:4px;">📥 Descargar PDF</button>
+            <button onclick="downloadSinglePdf(${a.n})" class="btn-row-action btn-download-pdf" style="margin-left:4px;">📥 Descargar</button>
           </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    // CHATBOT IURISNIANO CON RESPUESTAS AUTOMÁTICAS E INSTANTÁNEAS
+    // CHATBOT IURISNIANO CON RESPUESTAS AUTOMÁTICAS E INSTANTÁNEAS DE RESUMEN
     let currentAttachedFileName = null;
 
     function toggleChatbotWindow() {
@@ -1653,7 +1638,7 @@
       const log = document.getElementById('chatbot-log');
       log.innerHTML = `
         <div style="background: #ffffff; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--mag-border); max-width: 85%; align-self: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
-          Conversación reiniciada. ¿Qué otra duda tienes sobre la causa o las normas de Gobierno Digital? ⚖️
+          Conversación reiniciada. ¿Qué consulta deseas hacer sobre el expediente en ejecución? ⚖️
         </div>
       `;
       removeAttachedFile();
@@ -1700,35 +1685,24 @@
       removeAttachedFile();
       log.scrollTop = log.scrollHeight;
 
-      // Activar typing indicator
       const typing = document.getElementById('chat-typing-indicator');
       typing.style.display = 'block';
 
       const q = val.toLowerCase();
-      let resp = "Con gusto te oriento. Puedes consultarme sobre fojas específicas, juzgado, casillas SINOE, plazos legales o el Decreto Legislativo N° 1412. ⚖️";
+      let resp = "Con gusto te ayudo. Puedes pedirme un **Resumen del Expediente**, revisar la **Sentencia**, o la **Etapa de Ejecución**. ⚖️";
 
       if (hadAttachment) {
-        resp = `He recibido y analizado el archivo **${hadAttachment}**. Corresponde a los recaudos del expediente laboral N° 00174-2019. Se encuentra digitalizado e indexado conforme a la Ley N° 1412. 📎`;
-      } else if (q.includes("demanda") || q.includes("escrito 01") || q.includes("donde esta la demanda")) {
-        resp = "La demanda laboral se halla en el **Actuado N° 02 (Fojas 2 al 26)**. Fue interpuesta por Andrés Leonidas Supo Quispe solicitando desnaturalización e inclusión en planillas de EsSalud. 📄";
-      } else if (q.includes("juez") || q.includes("quien es el juez")) {
-        resp = "El juez titular del despacho es el magistrado **Gonzalo Víctor Huamán Romero**, del Juzgado de Trabajo Zona Norte de Juliaca. ⚖️";
-      } else if (q.includes("secretaria") || q.includes("especialista")) {
-        resp = "La especialista legal a cargo de la causa es la Dra. **Rosario Carlos Villán**. ✍️";
-      } else if (q.includes("plazo") || q.includes("tiempo")) {
-        resp = "Plazos otorgados: **3 días hábiles** al actor para subsanar participación de SILSA (Res. N° 01) y **10 días hábiles** a EsSalud para contestar la demanda (Res. N° 02). ⏱️";
-      } else if (q.includes("sinoe") || q.includes("casilla")) {
-        resp = "Notificaciones electrónicas vía SINOE: Demandante en **Casilla 60375** y demandada EsSalud en **Casilla 59629**, según el Decreto Legislativo N° 1412. 📬";
-      } else if (q.includes("728") || q.includes("regimen") || q.includes("almacenero")) {
-        resp = "El actor solicita su incorporación a planillas bajo el régimen privado del **D. Leg. N° 728**, a plazo indeterminado en el cargo de Almacenero desde el 01/12/1996. 💼";
-      } else if (q.includes("ley") || q.includes("1412") || q.includes("gobierno digital")) {
-        resp = "El **Decreto Legislativo N° 1412** sustenta legalmente la Sede Digital (Art. 20), notificaciones SINOE (Art. 14), Interoperabilidad con RENIEC/PNP/INPE (Art. 26) y la protección de datos (Art. 5.10). 📜";
-      } else if (q.includes("resolucion 1") || q.includes("resolucion 01")) {
-        resp = "La **Resolución N° 01** del 13/08/2019 (Actuado N° 06, Fojas 99) declaró inadmisible la demanda solicitando aclaración sobre la empresa SILSA. 🏛️";
-      } else if (q.includes("resolucion 2") || q.includes("admisorio")) {
-        resp = "La **Resolución N° 02** del 28/08/2019 (Actuado N° 09, Fojas 105) admitió a trámite la demanda y ordenó el traslado a EsSalud. 🏛️";
-      } else if (q.includes("partes") || q.includes("demandante")) {
-        resp = "Demandante: **Andrés Leonidas Supo Quispe** (DNI 02167445) | Demandada: **EsSalud Red Asistencial Juliaca** (RUC 20131257750). Revisa su interoperabilidad en el Módulo III. 🔍";
+        resp = `He procesado el documento **${hadAttachment}**. Corresponde a los recaudos adjuntos en la causa laboral N° 00174-2019 en cumplimiento de la Ley N° 1412. 📎`;
+      } else if (q.includes("resumen") || q.includes("dame un resumen")) {
+        resp = "📋 **RESUMEN EJECUTIVO DE LA CAUSA:**<br>• **Partes:** Andrés Leonidas Supo Quispe vs. EsSalud Red Juliaca.<br>• **Materia:** Desnaturalización de intermediación laboral (SILSA).<br>• **Resultado:** Sentencia FUNDADA confirmada en 2da Instancia.<br>• **Estado:** En **Etapa de Ejecución** mediante Res. N° 15 para pase a planillas D. Leg. 728.";
+      } else if (q.includes("etapa") || q.includes("ejecucion")) {
+        resp = "🎯 **ETAPA DE EJECUCIÓN (Res. N° 15):** La sentencia tiene calidad de Cosa Juzgada. El juzgado ha requerido a EsSalud un plazo de 5 días para acreditar el alta del trabajador en el T-Registro SUNAT e inclusión en planillas 728.";
+      } else if (q.includes("anexo") || q.includes("demanda")) {
+        resp = "📄 La demanda (Actuado N° 02) incluye los **Anexos 1-A al 1-U**, destacando el **Acta de Infracción Sunafil N° 226-2013**, contratos SILSA y boletas de pago como Almacenero desde 1996.";
+      } else if (q.includes("sentencia") || q.includes("fallo")) {
+        resp = "🏛️ **SENTENCIA DE VISTA N° 012-2021:** La Sala Laboral de Puno ratificó en segunda instancia la desnaturalización del contrato y ordenó a EsSalud incorporar al actor a planillas permanentes.";
+      } else if (q.includes("ley") || q.includes("1412")) {
+        resp = "📜 El **Decreto Legislativo N° 1412** garantiza la validez legal de las notificaciones SINOE, el expediente electrónico y la interoperabilidad con RENIEC/PNP/INPE.";
       }
 
       setTimeout(() => {
@@ -1751,8 +1725,8 @@
         p0Sub: "Prototipo Académico de Gobierno Digital e Informático",
         p0Btn: "Ingresar al Sistema Jurisdiccional",
         p1Title: "Estableciendo Conexión Cifrada", p1Desc: "Accediendo a la Sede Central Juliaca - CSJ Puno...",
-        p4Title: "Indexando Cuaderno Laboral Digital", p4Desc: "Recuperando resoluciones, notificaciones y fojas...",
-        secI: "I. REPORTE DE EXPEDIENTE", secII: "II. ESTADO, PROCESO Y LÍNEA DE TIEMPO", secIII: "III. PARTES PROCESALES E INTEROPERABILIDAD (PISDP - DL N° 1412)", secIV: "IV. SEGUIMIENTO DEL EXPEDIENTE (NOTIFICACIONES Y RESOLUCIONES)"
+        p4Title: "Indexando Cuaderno Laboral Digital", p4Desc: "Recuperando resoluciones, anexos y liquidación en ejecución...",
+        secI: "I. REPORTE DE EXPEDIENTE", secII: "II. ESTADO, PROCESO Y LÍNEA DE TIEMPO COMPLETA", secIII: "III. PARTES PROCESALES E INTEROPERABILIDAD (PISDP - DL N° 1412)", secIV: "IV. SEGUIMIENTO DEL EXPEDIENTE (DEMANDA, ANEXOS, SENTENCIAS Y EJECUCIÓN)"
       },
       en: {
         appTitle: "Electronic Case Tracking - CSJ Puno",
@@ -1762,8 +1736,8 @@
         p0Sub: "Academic Prototype for Digital Government and IT Law",
         p0Btn: "Access Jurisdictional System",
         p1Title: "Establishing Encrypted Connection", p1Desc: "Connecting to Juliaca Headquarters - CSJ Puno...",
-        p4Title: "Indexing Digital Case File", p4Desc: "Retrieving case orders, service notices and filings...",
-        secI: "I. CASE REPORT", secII: "II. STATUS, PROGRESS AND TIMELINE", secIII: "III. PROCEDURAL PARTIES AND INTEROPERABILITY (PISDP - DL N° 1412)", secIV: "IV. CASE TRACKING (NOTIFICATIONS AND RESOLUTIONS)"
+        p4Title: "Indexing Digital Case File", p4Desc: "Retrieving case orders, service notices and execution status...",
+        secI: "I. CASE REPORT", secII: "II. FULL STATUS, PROCESS AND TIMELINE", secIII: "III. PROCEDURAL PARTIES AND INTEROPERABILITY (PISDP - DL N° 1412)", secIV: "IV. CASE TRACKING (CLAIM, ANNEXES, RULINGS AND EXECUTION)"
       }
     };
 
@@ -1803,7 +1777,7 @@
       sessionTimeLeft--;
       if (sessionTimeLeft <= 0) {
         alert("Su sesión de 7 minutos ha finalizado por seguridad judicial. Redirigiendo al inicio.");
-        location.reload();
+        exitToHome();
       }
       const m = Math.floor(sessionTimeLeft / 60);
       const s = sessionTimeLeft % 60;
