@@ -39,7 +39,7 @@
       position: relative;
     }
 
-    /* PANTALLA DE CARGA MEJORADA Y FLUIDA (SPLASH SCREEN) */
+    /* PANTALLA DE CARGA (SPLASH SCREEN) */
     #full-page-splash {
       position: fixed;
       top: 0;
@@ -71,10 +71,10 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .splash-themis-img {
-      width: 130px;
-      height: auto;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    .splash-themis-svg {
+      width: 110px;
+      height: 180px;
+      flex-shrink: 0;
     }
 
     .splash-text-brand {
@@ -124,9 +124,9 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: min(75vw, 480px);
+      width: min(75vw, 420px);
       height: auto;
-      opacity: 0.04;
+      opacity: 0.038;
       pointer-events: none;
       z-index: 0;
     }
@@ -577,7 +577,7 @@
       color: #14532d;
     }
 
-    /* BURBUJA FLOTANTE INFERIOR IZQUIERDA (ADVERTENCIA ACADÉMICA CON EQUIS PARA CERRAR) */
+    /* BURBUJA FLOTANTE INFERIOR IZQUIERDA */
     #academic-left-notice {
       position: fixed;
       bottom: 22px;
@@ -612,7 +612,7 @@
       cursor: pointer;
     }
 
-    /* CHATBOT IURISNIANO RESTAURADO */
+    /* CHATBOT IURISNIANO CON ANIMACIÓN Y TRES PUNTOS */
     #chatbot-wrapper {
       position: fixed;
       bottom: 22px;
@@ -676,6 +676,27 @@
       overflow: hidden;
     }
 
+    /* Animación de tres puntos pulsantes para el bot */
+    .typing-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+    }
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--mag-vivid);
+      border-radius: 50%;
+      animation: typingBlink 1.4s infinite ease-in-out fill-mode-both;
+    }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typingBlink {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1.2); opacity: 1; }
+    }
+
     /* FOOTER ACADÉMICO CON ÍCONOS FIELES DE REDES SOCIALES */
     .academic-footer {
       background: #18020e;
@@ -710,18 +731,31 @@
 </head>
 <body>
 
-  <!-- BURBUJA DE ADVERTENCIA ACADÉMICA INFERIOR IZQUIERDA CON BOTÓN X PARA CERRAR -->
+  <!-- BURBUJA DE ADVERTENCIA ACADÉMICA INFERIOR IZQUIERDA -->
   <div id="academic-left-notice">
     <button class="close-btn" onclick="document.getElementById('academic-left-notice').style.display='none'">✕</button>
     <div style="font-weight: 800; color: #750e2e; margin-bottom: 2px;">🎓 NOTA ACADÉMICA</div>
     <div>Prototipo simulado universitario (D. Leg. N° 1412 / Ley N° 29733 de Datos Personales).</div>
   </div>
 
-  <!-- PANTALLA DE CARGA CON IMAGEN REAL DE THEMIS (SPLASH) -->
+  <!-- PANTALLA DE CARGA CON TRAZADO NATIVO DE THEMIS (100% GARANTIZADO) -->
   <div id="full-page-splash">
     <div class="splash-content-wrapper">
-      <!-- Imagen real/SVG de la Diosa Themis con espada y balanza -->
-      <img src="https://raw.githubusercontent.com/scondorir/EJE_Laboral_00174_2019/main/themis.jpg" alt="Diosa Themis" class="splash-themis-img" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Lady_Justice_icon.svg/200px-Lady_Justice_icon.svg.png';">
+      <svg class="splash-themis-svg" viewBox="0 0 200 320" fill="none">
+        <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#ffffff"/>
+        <rect x="83" y="32" width="34" height="6" fill="#750e2e" rx="2"/>
+        <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#ffffff"/>
+        <path d="M72 85 Q60 105 50 140 L40 180 L30 175 L45 125 L65 75 Z" fill="#ffffff"/>
+        <path d="M30 170 L20 220 L28 222 L36 175 Z" fill="#ffffff"/>
+        <path d="M15 220 L55 120" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+        <path d="M10 215 L20 225 L12 233 L2 223 Z" fill="#ffffff"/>
+        <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#ffffff"/>
+        <path d="M155 35 L190 35" stroke="#ffffff" stroke-width="3"/>
+        <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <path d="M140 75 Q155 85 170 75 Z" fill="#ffffff"/>
+        <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+        <path d="M175 75 Q190 85 205 75 Z" fill="#ffffff"/>
+      </svg>
 
       <div class="splash-text-brand">
         <span class="line-1">PORTAL ELECTRÓNICO</span>
@@ -734,8 +768,21 @@
     </div>
   </div>
 
-  <!-- MARCA DE AGUA FIJA DE LA DIOSA THEMIS -->
-  <img src="https://raw.githubusercontent.com/scondorir/EJE_Laboral_00174_2019/main/themis.jpg" class="watermark-bg" alt="Watermark Themis" onerror="this.style.display='none'">
+  <!-- MARCA DE AGUA NATIVA DE LA DIOSA THEMIS -->
+  <div class="watermark-bg">
+    <svg viewBox="0 0 200 320" fill="none" style="width: 100%; height: 100%;">
+      <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#750e2e"/>
+      <rect x="83" y="32" width="34" height="6" fill="#ffffff" rx="2"/>
+      <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#750e2e"/>
+      <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#750e2e"/>
+      <path d="M155 35 L190 35" stroke="#750e2e" stroke-width="3"/>
+      <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+      <path d="M140 75 Q155 85 170 75 Z" fill="#750e2e"/>
+      <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+      <path d="M175 75 Q190 85 205 75 Z" fill="#750e2e"/>
+      <path d="M15 220 L55 120" stroke="#750e2e" stroke-width="4"/>
+    </svg>
+  </div>
 
   <!-- ENCABEZADO FIJO -->
   <div class="sticky-header-container">
@@ -797,7 +844,18 @@
       <div class="splash-card">
         <div class="splash-hero-magenta">
           <div class="themis-white-frame">
-            <img src="https://raw.githubusercontent.com/scondorir/EJE_Laboral_00174_2019/main/themis.jpg" alt="Diosa Themis Icono" style="width: auto; height: 110px;" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Lady_Justice_icon.svg/200px-Lady_Justice_icon.svg.png';">
+            <svg style="width: 55px; height: 85px;" viewBox="0 0 200 320" fill="none">
+              <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#750e2e"/>
+              <rect x="83" y="32" width="34" height="6" fill="#be185d" rx="2"/>
+              <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#750e2e"/>
+              <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#750e2e"/>
+              <path d="M155 35 L190 35" stroke="#750e2e" stroke-width="4"/>
+              <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+              <path d="M140 75 Q155 85 170 75 Z" fill="#be185d"/>
+              <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+              <path d="M175 75 Q190 85 205 75 Z" fill="#be185d"/>
+              <path d="M15 220 L55 120" stroke="#750e2e" stroke-width="5"/>
+            </svg>
           </div>
           <h1 id="p0-heading" style="font-size: 19px; font-weight: 800;">PORTAL ELECTRÓNICO JUDICIAL (CEJ / EJE)</h1>
           <p id="p0-subheading" style="font-size: 12px; color: #fce7f3; margin-top: 4px;">Prototipo Académico de Gobierno Digital e Informático</p>
@@ -848,7 +906,18 @@
       <div style="max-width: 1100px; width: 100%; margin: 20px auto; padding: 0 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
         
         <div id="box-temis-blank" onclick="startSearchFlow()" style="background: white; border: 1px solid var(--mag-border); border-radius: 20px; text-align: center; padding: 42px 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
-          <img src="https://raw.githubusercontent.com/scondorir/EJE_Laboral_00174_2019/main/themis.jpg" alt="Diosa Themis Inicio" style="width: 100px; height: auto; margin: 0 auto 14px; display: block;" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Lady_Justice_icon.svg/200px-Lady_Justice_icon.svg.png';">
+          <svg style="width: 80px; height: 110px; margin: 0 auto 14px; display: block;" viewBox="0 0 200 320" fill="none">
+            <path d="M100 20 C108 20 115 26 115 34 C115 40 110 45 105 47 L105 55 L95 55 L95 47 C90 45 85 40 85 34 C85 26 92 20 100 20 Z" fill="#750e2e"/>
+            <rect x="83" y="32" width="34" height="6" fill="#be185d" rx="2"/>
+            <path d="M78 58 L122 58 L128 85 L118 130 L125 180 L115 260 L85 260 L75 180 L82 130 L72 85 Z" fill="#750e2e"/>
+            <path d="M122 58 L155 35 L165 42 L128 80 Z" fill="#750e2e"/>
+            <path d="M155 35 L190 35" stroke="#750e2e" stroke-width="4"/>
+            <path d="M155 35 L145 75 L165 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+            <path d="M140 75 Q155 85 170 75 Z" fill="#be185d"/>
+            <path d="M190 35 L180 75 L200 75 Z" fill="none" stroke="#750e2e" stroke-width="2"/>
+            <path d="M175 75 Q190 85 205 75 Z" fill="#be185d"/>
+            <path d="M15 220 L55 120" stroke="#750e2e" stroke-width="5"/>
+          </svg>
           <h2 id="p2-temis-title" style="font-size: 19px; color: #3f0314; font-weight: 800;">Portal Electrónico Judicial - CSJ Puno</h2>
           <p id="p2-temis-desc" style="font-size: 13px; color: #64748b; max-width: 500px; margin: 8px auto 16px;">
             Haga clic en este recuadro para validar el código CAPTCHA de seguridad e iniciar la consulta de causas.
@@ -1162,7 +1231,7 @@
     </div>
   </div>
 
-  <!-- CHATBOT IURISNIANO RESTAURADO CON ANIMACIÓN FLOTANTE -->
+  <!-- CHATBOT IURISNIANO RESTAURADO CON ANIMACIÓN DE 3 PUNTOS -->
   <div id="chatbot-wrapper">
     <div id="chat-prompt-bubble" class="chat-incentive-bubble" onclick="openAndHidePromptChat()">
       💬 ¿Necesitas un resumen o ayuda con el expediente? ⚖️ ¡Haz clic aquí!
@@ -1191,14 +1260,17 @@
       <button onclick="toggleChatbotWindow()" style="background: none; border: none; color: white; font-size: 16px; cursor: pointer;">✕</button>
     </div>
 
+    <!-- MENSAJES PREDISPUESTOS RÁPIDOS -->
     <div style="display: flex; gap: 4px; padding: 6px 10px; background: #fdf2f8; border-bottom: 1px solid var(--mag-border); overflow-x: auto;">
       <button onclick="quickAskBot('Dame un resumen del expediente')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">📊 Resumen General</button>
       <button onclick="quickAskBot('¿En qué etapa estamos?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">🎯 Etapa Ejecución</button>
+      <button onclick="quickAskBot('¿Quiénes son las partes?')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">👥 Partes</button>
+      <button onclick="quickAskBot('Explícame el DL 1412')" style="background: white; border: 1px solid var(--mag-border); border-radius: 12px; padding: 3px 8px; font-size: 9px; cursor: pointer; white-space: nowrap; color: #750e2e; font-weight: bold;">⚖️ DL N° 1412</button>
     </div>
 
     <div id="chatbot-log" style="flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 12px; display: flex; flex-direction: column; gap: 8px; background: #fffafc;">
       <div style="background: #ffffff; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--mag-border); max-width: 85%; align-self: flex-start;">
-        ¡Hola! 👋 Soy <strong>IURISNIANO</strong>. Puedo ofrecerte un **Resumen Ejecutivo** o explicarte la **Sentencia en Ejecución**. ¿En qué te ayudo?
+        ¡Hola! 👋 Soy <strong>IURISNIANO</strong>, tu asistente de Inteligencia Artificial Jurisdiccional. Utiliza los botones de preguntas rápidas o escribe cualquier duda sobre la causa.
       </div>
     </div>
 
@@ -1254,7 +1326,7 @@
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
   </style>
 
-  <!-- LÓGICA JAVASCRIPT COMPLETA Y SIN RETROCESOS -->
+  <!-- LÓGICA JAVASCRIPT COMPLETA Y ESTABLE -->
   <script>
     // CARGAPANTALLA INICIAL DE 3 SEGUNDOS FLUIDO
     window.addEventListener('DOMContentLoaded', () => {
@@ -1279,7 +1351,7 @@
       requestAnimationFrame(animateProgress);
     });
 
-    // BASE DE DATOS DEL EXPEDIENTE CON CENSURA APLICADA EN TODOS LOS PUNTOS
+    // BASE DE DATOS DEL EXPEDIENTE CON CENSURA APLICADA
     var ACTUADOS = [
       {
         n: 1, f: "Fjs. 1-2", d: "26/06/2019", t: "Actuado N° 01: Cargo / Carátula de Ingreso", des: "Mesa de Partes Única de Juliaca - CDG N° 00174-2019.",
@@ -1513,7 +1585,7 @@
       document.getElementById('panel-search-form').style.display = 'block';
     }
 
-    // MODALES Y TEXTOS INSTITUCIONALES COMPLETOS RESTAURADOS
+    // MODALES Y TEXTOS INSTITUCIONALES COMPLETOS
     function openModal(id) { document.getElementById(id).style.display = 'flex'; }
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
@@ -1729,7 +1801,7 @@
       });
     }
 
-    // CHATBOT IURISNIANO RESTAURADO
+    // LÓGICA COMPLETA DE IURISNIANO CON ANIMACIÓN DE TRES PUNTOS
     function openAndHidePromptChat() {
       document.getElementById('chat-prompt-bubble').style.display = 'none';
       toggleChatbotWindow();
@@ -1751,6 +1823,8 @@
       if (!val) return;
 
       const log = document.getElementById('chatbot-log');
+
+      // Mensaje del usuario
       const uMsg = document.createElement('div');
       uMsg.style = "background:#750e2e; color:white; padding:8px 12px; border-radius:12px; max-width:85%; align-self:flex-end;";
       uMsg.innerText = val;
@@ -1758,22 +1832,45 @@
       input.value = "";
       log.scrollTop = log.scrollHeight;
 
+      // Mensaje temporal con la animación de los 3 puntos
+      const typingMsg = document.createElement('div');
+      typingMsg.id = "bot-typing-temp";
+      typingMsg.style = "background:#ffffff; border:1px solid var(--mag-border); border-radius:12px; padding:6px 10px; max-width:85%; align-self:flex-start;";
+      typingMsg.innerHTML = `
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      log.appendChild(typingMsg);
+      log.scrollTop = log.scrollHeight;
+
+      // Generación de respuesta dinámica
       const q = val.toLowerCase();
-      let resp = "Con gusto te asisto con la causa. Puedes pedirme un **Resumen** o detalles de la **Sentencia**.";
+      let resp = "Con gusto te asisto con la causa. Puedes utilizar las opciones prediseñadas o consultar sobre el **Resumen**, la **Sentencia** o la **Ley N° 29733**.";
 
       if (q.includes("resumen")) {
-        resp = "📋 **RESUMEN EJECUTIVO:**<br>• **Partes:** An*** Le*** Su*** Qu*** vs EsSalud.<br>• **Resultado:** Sentencia FUNDADA confirmada.<br>• **Estado:** En **Etapa de Ejecución** (Res. N° 15).";
+        resp = "📋 **RESUMEN EJECUTIVO:**<br>• **Materia:** Desnaturalización de Contrato.<br>• **Partes:** An*** Le*** Su*** Qu*** vs EsSalud.<br>• **Fallo:** Sentencia FUNDADA confirmada en 2da instancia.<br>• **Estado:** En **Etapa de Ejecución de Sentencia Firme** (Res. N° 15).";
       } else if (q.includes("etapa") || q.includes("ejecucion")) {
-        resp = "🎯 **EJECUCIÓN FIRME:** La causa exige a EsSalud registrar al actor en SUNAT T-Registro e incluirlo en planillas 728.";
+        resp = "🎯 **ETAPA DE EJECUCIÓN:** La causa cuenta con Sentencia Firme. Mediante la Resolución N° 15, se le requiere a EsSalud registrar al trabajador en el T-Registro de SUNAT e incluirlo en planillas (D. Leg. 728).";
+      } else if (q.includes("partes")) {
+        resp = "👥 **PARTES PROCESALES:**<br>• **Demandante:** An*** Le*** Su*** Qu*** (DNI 0216****)<br>• **Demandada:** Seguro Social de Salud - EsSalud (RUC 2013****)<br>• **Apoderado EsSalud:** Abog. He*** Ro*** Ló*** Al***";
+      } else if (q.includes("1412") || q.includes("decreto")) {
+        resp = "⚖️ **DECRETO LEGISLATIVO N° 1412:** Es el marco legal del Gobierno Digital que otorga plena validez jurídica al Expediente Judicial Electrónico (EJE), las casillas SINOE y la interoperabilidad PISDP.";
       }
 
+      // Reemplazo del indicador de escritura por la respuesta tras 900ms
       setTimeout(() => {
+        const temp = document.getElementById("bot-typing-temp");
+        if (temp) temp.remove();
+
         const bMsg = document.createElement('div');
-        bMsg.style = "background:#ffffff; padding:8px 12px; border-radius:12px; border:1px solid var(--mag-border); max-width:85%; align-self:flex-start;";
+        bMsg.style = "background:#ffffff; padding:8px 12px; border-radius:12px; border:1px solid var(--mag-border); max-width:85%; align-self:flex-start; font-size:12px; line-height:1.5;";
         bMsg.innerHTML = resp;
         log.appendChild(bMsg);
         log.scrollTop = log.scrollHeight;
-      }, 400);
+      }, 900);
     }
 
     // MULTI-IDIOMA TOTAL
